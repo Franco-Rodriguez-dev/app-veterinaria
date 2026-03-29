@@ -1,0 +1,30 @@
+<div class="title">
+  <h1>Ver Persona</h1>
+</div>
+
+<div class="container">
+  <mat-card class="card">
+
+    <mat-card-title>{{ persona?.nombre }} {{ persona?.apellido }}</mat-card-title>
+
+    <mat-card-content>
+      <p><strong>Edad:</strong> {{ persona?.edad }} años</p>
+      <p><strong>Teléfono:</strong> {{ persona?.telefono }}</p>
+      <p><strong>Sexo:</strong> {{ persona?.sexo }}</p>
+
+      <div *ngIf="persona?.mascotas?.length">
+        <h3>Mascotas de {{ persona?.nombre }}:</h3>
+        <ul>
+          <li *ngFor="let mascota of persona?.mascotas">
+             {{ mascota.nombre }} ({{ mascota.raza }})
+          </li>
+        </ul>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button type="button" routerLink="/listadoPersona" mat-raised-button>Volver</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

@@ -1,0 +1,21 @@
+<div class="title">
+    <h1> ver mascotas</h1>
+</div>
+
+<div class="conteiner">
+    <mat-card   class="card">
+
+      <mat-card-title> {{mascota?.nombre}} </mat-card-title>
+      <mat-card-content>
+                <p><strong>Raza:</strong>{{mascota?.raza}}</p>
+                <p><strong>Color:</strong> {{mascota?.color}} </p>
+                <p><strong>Peso:</strong> {{mascota?.peso}} kgs </p>
+                <p><strong>Edad:</strong> {{mascota?.edad}} años </p>
+      </mat-card-content>
+      <mat-card-actions> 
+          <button type="button" routerLink="/listadoMascota" mat-raised-button>Volver</button>
+      </mat-card-actions>
+
+    </mat-card>  
+
+</div>

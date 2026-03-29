@@ -1,0 +1,49 @@
+.title {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 30px;
+}
+.buscador{
+  width: 100%;
+}
+.container {
+
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.icon-view {
+  color: #2196f3;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.icon-edit {
+  color: #ff9800;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.icon-delete {
+  color: #f44336;
+  cursor: pointer;
+}
+
+.listado{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 15px;
+  color: #090908;
+  padding: 4px;
+}
+
+.per{
+  margin-right: 8px;
+}

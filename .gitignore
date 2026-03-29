@@ -1,0 +1,13 @@
+# Angular
+FE-CRUDMascotas/node_modules/
+FE-CRUDMascotas/dist/
+
+# .NET
+BE-CRUDMascotas/bin/
+BE-CRUDMascotas/obj/
+
+# Visual Studio
+.vs/
+
+# otros
+.env

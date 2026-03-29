@@ -1,0 +1,305 @@
+[
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.AuthController",
+    "Method": "login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BE_CRUDMascotas.models.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.MascotaController",
+    "Method": "Get",
+    "RelativePath": "api/Mascota",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.MascotaController",
+    "Method": "post",
+    "RelativePath": "api/Mascota",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mascotaDTO",
+        "Type": "BE_CRUDMascotas.models.DTO.MascotaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.MascotaController",
+    "Method": "Get",
+    "RelativePath": "api/Mascota/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.MascotaController",
+    "Method": "Delete",
+    "RelativePath": "api/Mascota/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.MascotaController",
+    "Method": "put",
+    "RelativePath": "api/Mascota/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "mascotaDTO",
+        "Type": "BE_CRUDMascotas.models.DTO.MascotaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.PersonaController",
+    "Method": "GetAll",
+    "RelativePath": "api/Persona",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[BE_CRUDMascotas.models.DTO.PersonaListsDTO, BE-CRUDMascotas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.PersonaController",
+    "Method": "Create",
+    "RelativePath": "api/Persona",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BE_CRUDMascotas.models.DTO.PersonaCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BE_CRUDMascotas.models.DTO.PersonaListsDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.PersonaController",
+    "Method": "GetById",
+    "RelativePath": "api/Persona/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BE_CRUDMascotas.models.DTO.PersonaDetalleDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.PersonaController",
+    "Method": "Update",
+    "RelativePath": "api/Persona/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BE_CRUDMascotas.models.DTO.PersonaUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BE_CRUDMascotas.Controllers.PersonaController",
+    "Method": "Delete",
+    "RelativePath": "api/Persona/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VeterinariaController",
+    "Method": "GetPorId",
+    "RelativePath": "api/Veterinaria/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "BE_CRUDMascotas.models.DTO.PersonaMascotaCreateDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "VeterinariaController",
+    "Method": "UpdateConMascota",
+    "RelativePath": "api/Veterinaria/actualizarConMascota/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BE_CRUDMascotas.models.DTO.PersonaMascotaCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VeterinariaController",
+    "Method": "CrearConMascota",
+    "RelativePath": "api/Veterinaria/crearConMascota",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BE_CRUDMascotas.models.DTO.PersonaMascotaCreateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VeterinariaController",
+    "Method": "DeleteConMascotas",
+    "RelativePath": "api/Veterinaria/eliminarConMascotas/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VeterinariaController",
+    "Method": "GetListadoGeneral",
+    "RelativePath": "api/Veterinaria/listadoGeneral",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VeterinariaController",
+    "Method": "ProbarError",
+    "RelativePath": "api/Veterinaria/probar-error",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

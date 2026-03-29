@@ -1,0 +1,28 @@
+<div class="title">
+    <h1> Ver Persona y Mascota</h1>
+</div>
+
+<div class="conteiner">
+    <mat-card   class="card">
+
+      <mat-card-title> {{ veterinaria?.nombre }} {{ veterinaria?.apellido }} </mat-card-title>
+      <mat-card-content>
+                
+                <p><strong>Telefono: </strong>{{veterinaria?.telefono }}</p>
+                <p><strong>Edad: </strong> {{veterinaria?.edad}} años </p>
+                <p><strong>Sexo: </strong> {{veterinaria?.sexo}}  </p>
+                <hr />
+                <h3> Mascota</h3>
+                <p><strong>Nombre Mascota: </strong> {{ veterinaria?.mascota?.nombre }}</p>
+                <p><strong>Raza: </strong> {{veterinaria?.mascota?.raza }}</p>
+                <p><strong>Color :</strong> {{ veterinaria?.mascota?.color }}</p>
+                <p><strong>Edad Mascota: </strong> {{ veterinaria?.mascota?.edad }} años</p>
+                <p><strong>Peso: </strong> {{ veterinaria?.mascota?.peso }} kg</p>
+      </mat-card-content>
+      <mat-card-actions> 
+          <button type="button" routerLink="/listadoGeneral" mat-raised-button>Volver</button>
+      </mat-card-actions>
+
+    </mat-card>  
+
+</div>
