@@ -1,17 +1,40 @@
-<h2>Login</h2>
+<div class="title">
+  <h1>Veterinaria</h1>
+  <p>Iniciar sesion</p>
+</div>
 
-<form (ngSubmit)="login()">
+<div class="container">
+  <mat-card class="card">
+    <mat-card-subtitle class="sub">Acceso al sistema</mat-card-subtitle>
 
-  <label>Usuario</label>
-  <input type="text" [(ngModel)]="usuario" name="usuario">
+    <form (ngSubmit)="login()" class="login-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="usuario"
+          name="usuario"
+          autocomplete="username"
+          required
+        />
+      </mat-form-field>
 
-  <br><br>
+      <mat-form-field appearance="outline">
+        <mat-label>Contrasena</mat-label>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          autocomplete="current-password"
+          required
+        />
+      </mat-form-field>
 
-  <label>Password</label>
-  <input type="password" [(ngModel)]="password" name="password">
-
-  <br><br>
-
-  <button type="submit">Ingresar</button>
-
-</form>
+      <button matButton="filled" type="submit" [disabled]="!usuario || !password">
+        Ingresar
+      </button>
+    </form>
+  </mat-card>
+</div>
