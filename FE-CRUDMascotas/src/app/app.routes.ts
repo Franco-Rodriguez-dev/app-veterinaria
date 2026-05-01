@@ -4,6 +4,9 @@ import { Routes } from '@angular/router';
 //login
 import { Login } from './components/login/login';
 
+//auth
+import { authGuard } from './guards/auth-guard';
+
 
 // Componentes de Mascota standalone
 import { ListadoMascotaComponent } from './components/mascota/listado-mascota/listado-mascota.component';
@@ -29,28 +32,28 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
   //{ path: '', redirectTo:'listadoGeneral', pathMatch: 'full'   }, // Página inicial---modificar esto ahora 
 
   // 🧩 Tu nuevo listado combinado
-  { path: 'listadoGeneral', component: ListadoGeneralComponent },
+  { path: 'listadoGeneral', component: ListadoGeneralComponent, canActivate: [authGuard] },
 
   // Agregar nuevo registro (persona + mascota)
-  { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria },
+  { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria , canActivate: [authGuard]},
 
   // Editar registro existente
-  { path: 'editar/:id', component: AgregarEditarVeterinaria },
+  { path: 'editar/:id', component: AgregarEditarVeterinaria, canActivate: [authGuard] },
 
   // Ver detalles
-  { path: 'ver/:id', component: VerVeterinaria },
+  { path: 'ver/:id', component: VerVeterinaria, canActivate: [authGuard] },
 
 // Rutas de Mascota
-  { path: 'listadoMascota', component: ListadoMascotaComponent },
-  { path: 'agregar', component: AgregarEditarMascotaComponent },
-  { path: 'editar/:id', component: AgregarEditarMascotaComponent }, // Usamos el mismo para editar y va incrementando el id de las mascotas que muestra
-  { path: 'ver/:id', component: VerMascotaComponent },
+  { path: 'listadoMascota', component: ListadoMascotaComponent, canActivate: [authGuard] },
+  { path: 'agregar', component: AgregarEditarMascotaComponent, canActivate: [authGuard] },
+  { path: 'editar/:id', component: AgregarEditarMascotaComponent, canActivate: [authGuard] }, // Usamos el mismo para editar y va incrementando el id de las mascotas que muestra
+  { path: 'ver/:id', component: VerMascotaComponent, canActivate: [authGuard] },
 
 //  Rutas de Persona
-  { path: 'listadoPersona' , component: ListadoPersonaComponent },
-  { path: 'agregarPersona' , component: AgregarEditarPersona },
-  { path: 'editarPersona/:id' , component: AgregarEditarPersona },
-  { path: 'ver/:id' , component: VerPersonaComponent },
+  { path: 'listadoPersona' , component: ListadoPersonaComponent, canActivate: [authGuard] },
+  { path: 'agregarPersona' , component: AgregarEditarPersona, canActivate: [authGuard] },
+  { path: 'editarPersona/:id' , component: AgregarEditarPersona, canActivate: [authGuard] },
+  { path: 'ver/:id' , component: VerPersonaComponent, canActivate: [authGuard] },
 
 
   { path: '**',  redirectTo:'listadoGeneral', pathMatch: 'full'  } // Redirige cualquier ruta desconocida al listado
