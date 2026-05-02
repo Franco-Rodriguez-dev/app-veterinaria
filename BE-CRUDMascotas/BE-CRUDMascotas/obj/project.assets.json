@@ -8622,11 +8622,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectUniqueName": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "projectName": "BE-CRUDMascotas",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "packagesPath": "C:\\Users\\paula aguirre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\obj\\",
+      "outputPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

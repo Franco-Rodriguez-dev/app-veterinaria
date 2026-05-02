@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0h3ddUYl8ns=",
+  "dgSpecHash": "On3pVcMtFRU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+  "projectFilePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\paula aguirre\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\paula aguirre\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
@@ -184,9 +184,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BE-CRUDMascotas depende de Microsoft.AspNetCore.Authentication.JwtBearer (>= 8.0.9), pero no se encontró Microsoft.AspNetCore.Authentication.JwtBearer 8.0.9. Microsoft.AspNetCore.Authentication.JwtBearer 8.0.10 se resolvió en su lugar.",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "filePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "libraryId": "Microsoft.AspNetCore.Authentication.JwtBearer",
       "targetGraphs": [
         "net8.0"
@@ -196,9 +196,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BE-CRUDMascotas depende de Microsoft.AspNetCore.Identity.EntityFrameworkCore (>= 8.0.9), pero no se encontró Microsoft.AspNetCore.Identity.EntityFrameworkCore 8.0.9. Microsoft.AspNetCore.Identity.EntityFrameworkCore 8.0.10 se resolvió en su lugar.",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "filePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "libraryId": "Microsoft.AspNetCore.Identity.EntityFrameworkCore",
       "targetGraphs": [
         "net8.0"
@@ -208,9 +208,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BE-CRUDMascotas depende de Microsoft.AspNetCore.Identity.UI (>= 8.0.9), pero no se encontró Microsoft.AspNetCore.Identity.UI 8.0.9. Microsoft.AspNetCore.Identity.UI 8.0.10 se resolvió en su lugar.",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "filePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "libraryId": "Microsoft.AspNetCore.Identity.UI",
       "targetGraphs": [
         "net8.0"
@@ -220,9 +220,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BE-CRUDMascotas depende de Microsoft.EntityFrameworkCore (>= 8.0.9), pero no se encontró Microsoft.EntityFrameworkCore 8.0.9. Microsoft.EntityFrameworkCore 8.0.10 se resolvió en su lugar.",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "filePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "libraryId": "Microsoft.EntityFrameworkCore",
       "targetGraphs": [
         "net8.0"
@@ -232,9 +232,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BE-CRUDMascotas depende de Microsoft.EntityFrameworkCore.Design (>= 8.0.9), pero no se encontró Microsoft.EntityFrameworkCore.Design 8.0.9. Microsoft.EntityFrameworkCore.Design 8.0.10 se resolvió en su lugar.",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "filePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "libraryId": "Microsoft.EntityFrameworkCore.Design",
       "targetGraphs": [
         "net8.0"
@@ -244,9 +244,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BE-CRUDMascotas depende de Microsoft.EntityFrameworkCore.SqlServer (>= 8.0.9), pero no se encontró Microsoft.EntityFrameworkCore.SqlServer 8.0.9. Microsoft.EntityFrameworkCore.SqlServer 8.0.10 se resolvió en su lugar.",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "filePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
       "targetGraphs": [
         "net8.0"
@@ -256,9 +256,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "BE-CRUDMascotas depende de Microsoft.EntityFrameworkCore.Tools (>= 8.0.9), pero no se encontró Microsoft.EntityFrameworkCore.Tools 8.0.9. Microsoft.EntityFrameworkCore.Tools 8.0.10 se resolvió en su lugar.",
-      "projectPath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "projectPath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\paula aguirre\\OneDrive\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
+      "filePath": "C:\\Users\\paula aguirre\\Desktop\\App-Veterinaria\\BE-CRUDMascotas\\BE-CRUDMascotas\\BE-CRUDMascotas.csproj",
       "libraryId": "Microsoft.EntityFrameworkCore.Tools",
       "targetGraphs": [
         "net8.0"
