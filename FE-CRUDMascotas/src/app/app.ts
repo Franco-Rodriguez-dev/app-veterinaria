@@ -1,15 +1,20 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MaterialModules } from './shared/material'; // 👈 importás todos de golpe
-//import { ListadoMascotaComponent } from './components/listado-mascota/listado-mascota.component';// hay que agregar para poder usar en el html
+import { MaterialModules } from './shared/material';
+import { Navbar } from './shared/navbar/navbar';
+import { CommonModule } from '@angular/common';
+import { Auth } from './service/auth';
 
 @Component({
   selector: 'app-root',
-  standalone: true,   // 👈 hay que agregar esto
-  imports: [RouterOutlet,MaterialModules],//ListadoMascotaComponent,//y aca tambien se agrega y usas html
+  standalone: true,
+  imports: [RouterOutlet, MaterialModules, Navbar, CommonModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class App {
+
   protected readonly title = signal('FE-CRUDMascotas');
+
+  authService = inject(Auth); // 🔥 usamos el servicio reactivo
 }
