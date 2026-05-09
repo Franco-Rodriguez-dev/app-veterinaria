@@ -1,0 +1,7 @@
+<nav *ngIf="isLoggedIn$ | async" class="navbar">
+  <span class="logo">Veterinaria App</span>
+
+  <button (click)="logout()" class="logout-btn">
+    Cerrar sesión
+  </button>
+</nav>
