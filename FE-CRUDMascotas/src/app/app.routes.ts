@@ -6,6 +6,7 @@ import { Login } from './components/login/login';
 
 //auth
 import { authGuard } from './guards/auth-guard';
+import { roleGuard } from './guards/role-guard';
 
 
 // Componentes de Mascota standalone
@@ -35,24 +36,24 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
   { path: 'listadoGeneral', component: ListadoGeneralComponent, canActivate: [authGuard] },
 
   // Agregar nuevo registro (persona + mascota)
-  { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria , canActivate: [authGuard]},
+  { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria , canActivate: [authGuard, roleGuard],data: { roles: ['Administrador'] }},
 
   // Editar registro existente
-  { path: 'editar/:id', component: AgregarEditarVeterinaria, canActivate: [authGuard] },
+  { path: 'editar/:id', component: AgregarEditarVeterinaria, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
 
   // Ver detalles
   { path: 'ver/:id', component: VerVeterinaria, canActivate: [authGuard] },
 
 // Rutas de Mascota
   { path: 'listadoMascota', component: ListadoMascotaComponent, canActivate: [authGuard] },
-  { path: 'agregar', component: AgregarEditarMascotaComponent, canActivate: [authGuard] },
-  { path: 'editar/:id', component: AgregarEditarMascotaComponent, canActivate: [authGuard] }, // Usamos el mismo para editar y va incrementando el id de las mascotas que muestra
+  { path: 'agregar', component: AgregarEditarMascotaComponent, canActivate:[authGuard, roleGuard], data: { roles: ['Administrador'] }},
+  { path: 'editar/:id', component: AgregarEditarMascotaComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } }, // Usamos el mismo para editar y va incrementando el id de las mascotas que muestra
   { path: 'ver/:id', component: VerMascotaComponent, canActivate: [authGuard] },
 
 //  Rutas de Persona
   { path: 'listadoPersona' , component: ListadoPersonaComponent, canActivate: [authGuard] },
-  { path: 'agregarPersona' , component: AgregarEditarPersona, canActivate: [authGuard] },
-  { path: 'editarPersona/:id' , component: AgregarEditarPersona, canActivate: [authGuard] },
+  { path: 'agregarPersona' , component: AgregarEditarPersona, canActivate:[authGuard, roleGuard], data: { roles: ['Administrador'] } },
+  { path: 'editarPersona/:id' , component: AgregarEditarPersona, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'ver/:id' , component: VerPersonaComponent, canActivate: [authGuard] },
 
 

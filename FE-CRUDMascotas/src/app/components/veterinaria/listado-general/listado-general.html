@@ -63,7 +63,7 @@
         <button *ngIf="rol === 'Administrador'" mat-raised-button color="primary" (click)="agregar()">Agregar</button>
       </th>
       <td mat-cell *matCellDef="let e">
-        <mat-icon matTooltip="Ver" (click)="ver(e)" fontIcon="search"></mat-icon>
+        <mat-icon matTooltip="Ver" *ngIf="rol === 'Administrador'" (click)="ver(e)" fontIcon="search"></mat-icon>
         <mat-icon matTooltip="Editar" *ngIf="rol === 'Administrador'" (click)="editar(e)" fontIcon="edit"></mat-icon>
         <mat-icon matTooltip="Eliminar" *ngIf="rol === 'Administrador'" (click)="eliminar(e)" fontIcon="delete"></mat-icon>
       </td>
