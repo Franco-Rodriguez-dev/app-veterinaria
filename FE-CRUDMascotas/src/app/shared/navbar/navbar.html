@@ -1,4 +1,4 @@
-<nav *ngIf="isLoggedIn$ | async" class="navbar">
+<nav *ngIf="(isLoggedIn$ | async) && !isLoginPage" class="navbar">
   <span class="logo">Veterinaria App</span>
 
   <button (click)="logout()" class="logout-btn">

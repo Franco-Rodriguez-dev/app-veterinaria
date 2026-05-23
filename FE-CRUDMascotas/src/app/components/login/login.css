@@ -1,6 +1,5 @@
 .title {
   text-align: center;
-  margin-top: 28px;
 }
 
 .title h1 {
@@ -16,6 +15,8 @@
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 180px);
   padding: 20px;
 }
 
@@ -52,4 +53,10 @@ button[type='submit'] {
   .card {
     max-width: 100%;
   }
+}
+
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
 }

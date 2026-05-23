@@ -17,6 +17,10 @@ export class Navbar {
 
   isLoggedIn$ = this.authService.isLoggedIn$;
 
+  get isLoginPage(): boolean {
+    return this.router.url === '/login';
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
