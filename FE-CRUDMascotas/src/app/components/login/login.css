@@ -1,14 +1,19 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
 .title {
   text-align: center;
 }
 
 .title h1 {
   margin: 0;
-  font-size: 32px;
+  font-size: 36px;
 }
 
 .title p {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   font-size: 16px;
 }
 
@@ -16,24 +21,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 180px);
-  padding: 20px;
+  min-height: calc(100vh - 172px);
+  padding: 24px;
 }
 
 .card {
   width: 100%;
-  max-width: 420px;
-  padding: 12px;
+  max-width: 430px;
+  padding: 22px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
 }
 
 .sub {
-  padding: 8px 4px 14px;
+  padding: 4px 0 18px;
+  color: var(--color-primary-dark);
+  font-size: 16px;
+  font-weight: 800;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 mat-form-field {
@@ -41,22 +52,28 @@ mat-form-field {
 }
 
 button[type='submit'] {
-  margin-top: 4px;
   align-self: flex-end;
+  min-width: 132px;
+  min-height: 42px;
+  margin-top: 4px;
+  border-radius: 8px;
+  background: var(--color-primary) !important;
+  color: white !important;
+  font-weight: 800;
+}
+
+button[type='submit']:disabled {
+  background: #b8c9c7 !important;
+  color: white !important;
 }
 
 @media (max-width: 480px) {
   .title h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .card {
     max-width: 100%;
+    padding: 18px;
   }
-}
-
-:host {
-  display: block;
-  height: 100vh;
-  overflow: hidden;
 }

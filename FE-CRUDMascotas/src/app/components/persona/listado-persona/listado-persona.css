@@ -1,19 +1,23 @@
-
-
-
 .mat-mdc-form-field {
   font-size: 14px;
-  width: 100%;
 }
 
-.delete{
-  cursor: pointer;
-  color: #e15639;
+.back-action {
+  background: var(--color-primary) !important;
+  color: white !important;
 }
-.edit{
+
+.delete {
   cursor: pointer;
-  color: #1878b0;
+  color: var(--color-delete);
 }
-.search{
+
+.edit {
   cursor: pointer;
+  color: var(--color-edit);
+}
+
+.search {
+  cursor: pointer;
+  color: var(--color-view);
 }

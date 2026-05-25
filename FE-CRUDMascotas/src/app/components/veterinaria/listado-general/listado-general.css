@@ -1,49 +1,44 @@
-.title {
-  text-align: center;
-  margin-top: 0;
-  font-size: 30px;
-}
-.buscador{
-  width: 100%;
-}
-.container {
-
-  padding: 20px;
+.listado {
+  width: min(1120px, calc(100% - 32px));
+  margin: 22px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text);
 }
 
-mat-form-field {
-  width: 100%;
-  margin-bottom: 20px;
+.listado h2 {
+  margin: 0 auto 0 0;
+  color: var(--color-primary-dark);
+  font-size: 20px;
+  font-weight: 800;
 }
 
-table {
-  width: 100%;
+.list-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white !important;
+  color: var(--color-primary-dark) !important;
+  border: 1px solid var(--color-border);
 }
 
-.icon-view {
-  color: #2196f3;
-  cursor: pointer;
-  margin-right: 8px;
+.masc {
+  color: #8b4e00 !important;
 }
 
-.icon-edit {
-  color: #ff9800;
-  cursor: pointer;
-  margin-right: 8px;
+.primary-action {
+  background: var(--color-primary) !important;
+  color: white !important;
 }
 
-.icon-delete {
-  color: #f44336;
-  cursor: pointer;
-}
+@media (max-width: 620px) {
+  .listado {
+    align-items: stretch;
+    flex-direction: column;
+  }
 
-.listado{
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 15px;
-  color: #090908;
-  padding: 4px;
-}
-
-.per{
-  margin-right: 8px;
+  .listado h2 {
+    margin-right: 0;
+  }
 }
