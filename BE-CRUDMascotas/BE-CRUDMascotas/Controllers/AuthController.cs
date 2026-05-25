@@ -50,10 +50,9 @@ namespace BE_CRUDMascotas.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, usuario.Username),
-                new Claim(ClaimTypes.Role, usuario.Rol.Nombre),
-                new Claim("usuario", usuario.Id.ToString())
-
+                  new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString()),
+                  new Claim(ClaimTypes.Name, usuario.Username),
+                  new Claim(ClaimTypes.Role, usuario.Rol.Nombre)
             };
 
             // 4. clave secreta

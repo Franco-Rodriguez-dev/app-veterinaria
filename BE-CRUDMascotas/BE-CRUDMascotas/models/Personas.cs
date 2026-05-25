@@ -44,5 +44,7 @@ namespace BE_CRUDMascotas.models
         // Relación 1:N con Mascotas
         [InverseProperty("Persona")]
         public List<Mascota> ListMascotas { get; set; } = new(); // inicializada para evitar null
+
+        public Usuario Usuario { get; set; }
     }
 }

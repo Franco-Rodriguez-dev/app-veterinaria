@@ -7,7 +7,7 @@
         public string Apellido { get; set; }
         public string Telefono { get; set; }
         public int Edad { get; set; }
-        public string Sexo { get; set; } = string.Empty;
+        public Sexo Sexo { get; set; } 
 
 
         // Mascota

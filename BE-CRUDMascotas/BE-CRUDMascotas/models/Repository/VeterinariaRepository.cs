@@ -87,7 +87,7 @@ namespace BE_CRUDMascotas.models.Repository
             persona.Apellido = dto.Apellido;
             persona.Telefono = dto.Telefono;
             persona.Edad = dto.Edad;
-            persona.Sexo = Enum.Parse<Sexo>(dto.Sexo, true); // 🔹 conversión string -> enum
+            persona.Sexo = dto.Sexo;
 
             // Actualizar mascota principal (asumimos una)
             var mascota = persona.ListMascotas.FirstOrDefault();
@@ -119,7 +119,7 @@ namespace BE_CRUDMascotas.models.Repository
                 Apellido = persona.Apellido,
                 Telefono = persona.Telefono,
                 Edad = persona.Edad,
-                Sexo = persona.Sexo.ToString(),
+                Sexo = persona.Sexo,
                 Mascota = new MascotaCreateDTO
                 {
                     Nombre = mascota?.Nombre,

@@ -17,6 +17,7 @@ namespace BE_CRUDMascotas.models
         // Representa las tablas en la base de datos
         public DbSet<Mascota> Mascota { get; set; }
         public DbSet<Personas> Personas { get; set; }
+        public DbSet<HistorialMascota> HistorialMascotas { get; set; }
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Rol> Roles { get; set; }
@@ -52,6 +53,21 @@ namespace BE_CRUDMascotas.models
 
             //“Si intento eliminar una Persona que aún tiene Mascotas registradas, el sistema me bloquea el borrado.”
 
+            modelBuilder.Entity<HistorialMascota>()
+                .Property(h => h.Tipo)
+                .HasConversion<string>()
+                .HasColumnType("nvarchar(30)");
+
+            modelBuilder.Entity<HistorialMascota>()
+                .Property(h => h.Precio)
+                .HasColumnType("decimal(10,2)");
+
+            modelBuilder.Entity<HistorialMascota>()
+                .HasOne(h => h.Mascota)
+                .WithMany(m => m.Historiales)
+                .HasForeignKey(h => h.MascotaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             modelBuilder.Entity<Rol>().HasData(
         new Rol { Id = 1, Nombre = "Administrador" },
@@ -66,7 +82,7 @@ namespace BE_CRUDMascotas.models
                    Username = "admin",
                    PasswordHash = "$2a$11$7g9hjhGe95vuvupJeCA4OemI8inSrfFFatgDwEoyxduWQJgyk3k6q", // hash de admin123
                    RolId = 1, // 1 = Administrador
-                   FechaCreacion = DateTime.Now
+                   FechaCreacion = new DateTime(2026, 1, 19, 13, 59, 32)
                },
                new Usuario
                {
@@ -74,7 +90,7 @@ namespace BE_CRUDMascotas.models
                    Username = "user1",
                    PasswordHash = "$2a$11$3fDFszUwJ.lHFptWqc85Eu2JD8sxTEeYhawHeh9GiOcydUAReMkAe", // ← pegás el hash
                    RolId = 2,
-                   FechaCreacion = DateTime.Now
+                   FechaCreacion = new DateTime(2026, 3, 24, 23, 9, 2)
                }
             );
         }
