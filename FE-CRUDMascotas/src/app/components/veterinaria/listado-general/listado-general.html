@@ -1,17 +1,22 @@
 <div class="title">
-  <h1>🐾 Veterinaria</h1>
+  <h1>Veterinaria</h1>
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>
 
-  <div class="listado">
-    <h2>Ver Listado</h2>
-    <a mat-flat-button class="per" routerLink="/listadoPersona"  matTooltip="Listado personas" >Personas</a>
-    <a mat-flat-button class="masc" routerLink="/listadoMascota"   matTooltip="Listado mascotas" >Mascota</a>
-  </div>
+<div class="listado">
+  <h2>Ver listado</h2>
+  <a mat-flat-button class="list-action per" routerLink="/listadoPersona" matTooltip="Listado personas">
+    <mat-icon fontIcon="groups"></mat-icon>
+    Personas
+  </a>
+  <a mat-flat-button class="list-action masc" routerLink="/listadoMascota" matTooltip="Listado mascotas">
+    <mat-icon fontIcon="pets"></mat-icon>
+    Mascotas
+  </a>
+</div>
 
 <div class="container">
-  <!-- 🔍 Buscar -->
   <mat-form-field class="buscador" appearance="outline">
     <mat-label>Buscar</mat-label>
     <input
@@ -20,13 +25,8 @@
       placeholder="Buscar por persona o mascota"
       autocomplete="off"
     />
-    
   </mat-form-field>
 
-
-  
-
-  <!-- 🧾 Tabla -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="nombre">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
@@ -39,7 +39,7 @@
     </ng-container>
 
     <ng-container matColumnDef="telefono">
-      <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+      <th mat-header-cell *matHeaderCellDef>Telefono</th>
       <td mat-cell *matCellDef="let e">{{ e.telefono }}</td>
     </ng-container>
 
@@ -60,19 +60,49 @@
 
     <ng-container matColumnDef="acciones">
       <th mat-header-cell *matHeaderCellDef>
-        <button *ngIf="rol === 'Administrador'" mat-raised-button color="primary" (click)="agregar()">Agregar</button>
+        <button
+          *ngIf="rol === 'Administrador'"
+          mat-raised-button
+          color="primary"
+          class="primary-action"
+          (click)="agregar()"
+        >
+          <mat-icon fontIcon="add"></mat-icon>
+          Agregar
+        </button>
       </th>
       <td mat-cell *matCellDef="let e">
-        <mat-icon matTooltip="Ver" *ngIf="rol === 'Administrador'" (click)="ver(e)" fontIcon="search"></mat-icon>
-        <mat-icon matTooltip="Editar" *ngIf="rol === 'Administrador'" (click)="editar(e)" fontIcon="edit"></mat-icon>
-        <mat-icon matTooltip="Eliminar" *ngIf="rol === 'Administrador'" (click)="eliminar(e)" fontIcon="delete"></mat-icon>
+        <mat-icon
+          class="action-icon action-view"
+          matTooltip="Ver"
+          *ngIf="rol === 'Administrador'"
+          (click)="ver(e)"
+          fontIcon="visibility"
+        ></mat-icon>
+        <mat-icon
+          class="action-icon action-edit"
+          matTooltip="Editar"
+          *ngIf="rol === 'Administrador'"
+          (click)="editar(e)"
+          fontIcon="edit"
+        ></mat-icon>
+        <mat-icon
+          class="action-icon action-delete"
+          matTooltip="Eliminar"
+          *ngIf="rol === 'Administrador'"
+          (click)="eliminar(e)"
+          fontIcon="delete"
+        ></mat-icon>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-<!--se le agrega esto para la paginacion -->
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-      aria-label="Select page of periodic elements"></mat-paginator>  
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Seleccionar pagina"
+  ></mat-paginator>
 </div>

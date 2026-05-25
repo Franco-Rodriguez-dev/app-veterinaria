@@ -1,15 +1,192 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.title {
-    background-color: #666;
-    padding: 30px;
-    color: white;
-    text-align: center;
+:root {
+  --color-bg: #f4f7f6;
+  --color-surface: #ffffff;
+  --color-surface-soft: #eef8f5;
+  --color-primary: #156f7a;
+  --color-primary-dark: #0f4f58;
+  --color-accent: #f2a541;
+  --color-text: #233033;
+  --color-muted: #6b7c80;
+  --color-border: #d8e4e2;
+  --color-view: #1e88e5;
+  --color-edit: #f2994a;
+  --color-delete: #d94a4a;
+  --shadow-soft: 0 14px 35px rgba(26, 55, 58, 0.11);
+  --radius: 8px;
 }
 
-.conteiner{
-  margin: 0 20%;
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(21, 111, 122, 0.12), transparent 28rem),
+    linear-gradient(180deg, #f8fbfa 0%, var(--color-bg) 100%);
+}
+
+.title {
+  padding: 34px 20px 28px;
+  color: white;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  box-shadow: 0 12px 28px rgba(15, 79, 88, 0.18);
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.title p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.container,
+.conteiner {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto;
+  padding: 0;
+}
+
+.table-shell,
+.container:has(table),
+.conteiner:has(table) {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.container > mat-form-field,
+.conteiner > mat-form-field,
+.buscador {
+  width: calc(100% - 32px);
+  margin: 16px 16px 10px;
+}
+
+table.mat-mdc-table {
+  width: 100%;
+  table-layout: fixed;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.mat-mdc-header-row {
+  height: 56px;
+  background: var(--color-surface-soft);
+}
+
+.mat-mdc-header-cell {
+  color: var(--color-primary-dark);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.mat-mdc-row {
+  min-height: 54px;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background: #fbfdfc;
+}
+
+.mat-mdc-row:hover {
+  background: #edf7f4;
+}
+
+.mat-mdc-cell {
+  color: var(--color-text);
+}
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  padding: 0 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mat-mdc-paginator {
+  border-top: 1px solid var(--color-border);
+}
+
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-button {
+  border-radius: var(--radius) !important;
+  font-weight: 700 !important;
+}
+
+.primary-action,
+.back-action,
+.list-action {
+  min-height: 38px;
+  border-radius: var(--radius);
+}
+
+.action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-right: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.action-icon:hover {
+  transform: translateY(-1px);
+}
+
+.action-view {
+  color: var(--color-view);
+  background: rgba(30, 136, 229, 0.11);
+}
+
+.action-edit {
+  color: var(--color-edit);
+  background: rgba(242, 153, 74, 0.14);
+}
+
+.action-delete {
+  color: var(--color-delete);
+  background: rgba(217, 74, 74, 0.12);
+}
+
+.back-action {
+  margin: 18px 16px 20px;
+}
+
+@media (max-width: 760px) {
+  .title h1 {
+    font-size: 28px;
+  }
+
+  .container,
+  .conteiner {
+    width: calc(100% - 20px);
+    margin: 18px auto;
+  }
+
+  .mat-mdc-table {
+    min-width: 720px;
+  }
+
+  .container:has(table),
+  .conteiner:has(table) {
+    overflow-x: auto;
+  }
 }
