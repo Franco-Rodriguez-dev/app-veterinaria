@@ -9,7 +9,7 @@ using Microsoft.OpenApi.Models;
 using System.Security.Claims;
 using System.Text;
 using BE_CRUDMascotas.Middleware;
-
+using System.Text.Json.Serialization;
 using BCrypt.Net;
 
 
@@ -18,7 +18,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -38,7 +42,7 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Ingres· el token asÌ: Bearer {tu_token}"
+        Description = "Ingres√° el token as√≠: Bearer {tu_token}"
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -110,6 +114,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<IMascotaRepository , MascotaRepository>();
 builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IVeterinariaRepository, VeterinariaRepository>();
+builder.Services.AddScoped<IHistorialMascotaRepository, HistorialMascotaRepository>();
 
 
 var app = builder.Build();

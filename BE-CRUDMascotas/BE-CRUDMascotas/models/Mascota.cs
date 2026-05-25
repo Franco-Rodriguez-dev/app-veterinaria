@@ -35,5 +35,7 @@ namespace BE_CRUDMascotas.models
         public int PersonaId { get; set; } // FK en la tabla Mascota
 
         public Personas Persona { get; set; } = null!; // Propiedad de navegación
+
+        public List<HistorialMascota> Historiales { get; set; } = new();
     }
 }

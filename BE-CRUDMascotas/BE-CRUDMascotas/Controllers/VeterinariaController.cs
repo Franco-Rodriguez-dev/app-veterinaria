@@ -1,7 +1,9 @@
-﻿using BE_CRUDMascotas.models.DTO;
+﻿using BE_CRUDMascotas.models;
+using BE_CRUDMascotas.models.DTO;
 using BE_CRUDMascotas.models.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 [Authorize]
 [Route("api/[controller]")]
@@ -38,37 +40,63 @@ public class VeterinariaController : ControllerBase
         return NoContent();
     }
 
+
+    [Authorize]
     [HttpPut("actualizarConMascota/{id}")]
     public async Task<IActionResult> UpdateConMascota(int id, PersonaMascotaCreateDTO dto)
     {
-        var userId = int.Parse(User.FindFirst("Usuario")?.Value);
-        var rol = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+        // Obtener ID del usuario desde el token
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+        if (userIdClaim == null)
+            return Unauthorized("Token inválido");
+
+        var userId = int.Parse(userIdClaim.Value);
+
+        // Obtener rol
+        var rol = User.FindFirst(ClaimTypes.Role)?.Value;
 
         // Si no es admin y quiere editar otra persona → prohibido
         if (rol != "Administrador" && userId != id)
-        {
             return Forbid();
-        }
+
+        // Verificar que exista la persona antes de actualizar
+        var existe = await _repo.GetPorIdAsync(id);
+        if (existe == null)
+            return NotFound("No se encontró la persona.");
+
+        
 
         await _repo.UpdateConMascotaAsync(id, dto);
+
         return NoContent();
     }
 
-    
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<PersonaMascotaCreateDTO>> GetPorId(int id)
     {
-        if (!int.TryParse(User.FindFirst("Usuario")?.Value, out int userId))
-        {
-            return Unauthorized("Token no contiene Usuario válido");
-        }
-        var rol = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
+        // Obtener el claim del usuario desde el token
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
 
+        if (userIdClaim == null)
+            return Unauthorized("Token inválido");
+
+        // Convertir el valor del claim a int
+        var userId = int.Parse(userIdClaim.Value);
+
+        // Obtener rol
+        var rol = User.FindFirst(ClaimTypes.Role)?.Value;
+
+        // Si no es admin y quiere ver otra persona → prohibido
         if (rol != "Administrador" && userId != id)
             return Forbid();
 
         var data = await _repo.GetPorIdAsync(id);
-        if (data == null) return NotFound("No se encontró la persona.");
+
+        if (data == null)
+            return NotFound("No se encontró la persona.");
+
         return Ok(data);
     }
 
