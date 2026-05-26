@@ -1,21 +1,103 @@
 <div class="title">
-    <h1> ver mascotas</h1>
+  <h1>Ver mascota</h1>
 </div>
 
 <div class="conteiner">
-    <mat-card   class="card">
+  <mat-card class="card">
+    <mat-card-title class="mascota-title">{{ mascota?.nombre | uppercase }}</mat-card-title>
+    <mat-card-content class="mascota-grid">
+      <p><strong>Raza:</strong> {{ mascota?.raza }}</p>
+      <p><strong>Color:</strong> {{ mascota?.color }}</p>
+      <p><strong>Peso:</strong> {{ mascota?.peso }} kgs</p>
+      <p><strong>Edad:</strong> {{ mascota?.edad }} anos</p>
+    </mat-card-content>
+  </mat-card>
 
-      <mat-card-title> {{mascota?.nombre}} </mat-card-title>
-      <mat-card-content>
-                <p><strong>Raza:</strong>{{mascota?.raza}}</p>
-                <p><strong>Color:</strong> {{mascota?.color}} </p>
-                <p><strong>Peso:</strong> {{mascota?.peso}} kgs </p>
-                <p><strong>Edad:</strong> {{mascota?.edad}} años </p>
-      </mat-card-content>
-      <mat-card-actions> 
-          <button type="button" routerLink="/listadoMascota" mat-raised-button>Volver</button>
-      </mat-card-actions>
+  <section class="historial-section">
+    <div class="historial-header">
+      <h2>Historial</h2>
 
-    </mat-card>  
+      <button
+        *ngIf="rol === 'Administrador'"
+        mat-raised-button
+        color="primary"
+        class="primary-action"
+        (click)="agregarHistorial()"
+      >
+        <mat-icon fontIcon="add"></mat-icon>
+        Agregar historial
+      </button>
+    </div>
 
+    <div class="empty-state" *ngIf="historial.length === 0">
+      Todavia no hay registros de historial para esta mascota.
+    </div>
+
+    <table *ngIf="historial.length > 0" mat-table [dataSource]="historial" class="mat-elevation-z8">
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef>Fecha</th>
+        <td mat-cell *matCellDef="let h">{{ h.fecha | date: 'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipo">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let h">{{ h.tipo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef>Titulo</th>
+        <td mat-cell *matCellDef="let h">{{ h.titulo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="precio">
+        <th mat-header-cell *matHeaderCellDef>Precio</th>
+        <td mat-cell *matCellDef="let h">{{ h.precio ? ('$' + h.precio) : '-' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="proximaVisita">
+        <th mat-header-cell *matHeaderCellDef>Proxima visita</th>
+        <td mat-cell *matCellDef="let h">
+          {{ h.proximaVisita ? (h.proximaVisita | date: 'dd/MM/yyyy') : '-' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let h">
+          <mat-icon
+            class="action-icon action-view"
+            matTooltip="Ver"
+            [routerLink]="['/historial-mascota/ver', h.id]"
+            fontIcon="visibility"
+          ></mat-icon>
+
+          <mat-icon
+            *ngIf="rol === 'Administrador'"
+            class="action-icon action-edit"
+            matTooltip="Editar"
+            (click)="editarHistorial(h.id)"
+            fontIcon="edit"
+          ></mat-icon>
+
+          <mat-icon
+            *ngIf="rol === 'Administrador'"
+            class="action-icon action-delete"
+            matTooltip="Eliminar"
+            (click)="eliminarHistorial(h.id)"
+            fontIcon="delete"
+          ></mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </section>
+
+  <div class="page-actions">
+    <button type="button" routerLink="/listadoMascota" mat-raised-button color="primary" class="back-action">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+      Volver
+    </button>
+  </div>
 </div>

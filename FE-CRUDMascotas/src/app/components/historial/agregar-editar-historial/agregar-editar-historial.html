@@ -1,0 +1,68 @@
+<div class="title">
+  <h1>{{ operacion }} historial</h1>
+</div>
+
+<div class="container">
+  <form [formGroup]="formHistorial" (ngSubmit)="guardar()">
+    <mat-card class="card">
+      <mat-card-title>Datos del historial</mat-card-title>
+
+      <mat-card-content class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha</mat-label>
+          <input matInput type="date" formControlName="fecha" />
+          <mat-error *ngIf="formHistorial.get('fecha')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipo">
+            <mat-option *ngFor="let tipo of tipos" [value]="tipo">
+              {{ tipo }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="formHistorial.get('tipo')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Titulo</mat-label>
+          <input matInput formControlName="titulo" />
+          <mat-error *ngIf="formHistorial.get('titulo')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Precio</mat-label>
+          <input matInput type="number" min="0" formControlName="precio" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Descripcion</mat-label>
+          <textarea matInput rows="4" formControlName="descripcion"></textarea>
+          <mat-error *ngIf="formHistorial.get('descripcion')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Observaciones</mat-label>
+          <textarea matInput rows="3" formControlName="observaciones"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Proxima visita</mat-label>
+          <input matInput type="date" formControlName="proximaVisita" />
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="acciones">
+      <button mat-raised-button color="primary" type="button" class="back-action" (click)="volver()">
+        <mat-icon fontIcon="arrow_back"></mat-icon>
+        Volver
+      </button>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="loading">
+        <mat-icon fontIcon="save"></mat-icon>
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,34 +1,44 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MascotaService } from '../../../service/mascota';  // ajustá la ruta según tu proyecto
-import { Mascota } from '../../../interfaces/mascota';  // o donde esté tu modelo
+import { MascotaService } from '../../../service/mascota';
+import { Mascota } from '../../../interfaces/mascota';
 import { MaterialModules } from '../../../shared/material';
-
+import { HistorialMascota } from '../../../interfaces/historial-mascota';
+import { HistorialMascotaService } from '../../../service/historial-mascota';
+import { Auth } from '../../../service/auth';
 
 @Component({
   selector: 'app-ver-mascota',
-  standalone: true,               // 👈 ahora es standalone
-  imports: [RouterModule,MaterialModules],
+  standalone: true,
+  imports: [CommonModule, RouterModule, MaterialModules],
   templateUrl: './ver-mascota.html',
-  styleUrls: ['./ver-mascota.css'] // 👈 plural
+  styleUrls: ['./ver-mascota.css']
 })
-
 export class VerMascotaComponent implements OnInit {
   private _snackBar = inject(MatSnackBar);
   private _mascotaService = inject(MascotaService);
+  private _historialService = inject(HistorialMascotaService);
+  private _authService = inject(Auth);
   private aRouter = inject(ActivatedRoute);
+  private router = inject(Router);
 
   id: string | null = null;
- mascota : Mascota | undefined;
+  mascota: Mascota | undefined;
+  historial: HistorialMascota[] = [];
+  rol = '';
+  displayedColumns: string[] = ['fecha', 'tipo', 'titulo', 'precio', 'proximaVisita', 'acciones'];
 
   ngOnInit(): void {
-    // Suscribirse al paramMap para recibir cambios en el id
+    this.rol = this._authService.getRol() || '';
+
     this.aRouter.paramMap.subscribe((params: ParamMap) => {
       this.id = params.get('id');
 
       if (this.id) {
         this.cargarMascota(this.id);
+        this.cargarHistorial(this.id);
       }
     });
   }
@@ -38,7 +48,7 @@ export class VerMascotaComponent implements OnInit {
       next: (data) => {
         this.mascota = data;
       },
-      error: (err) => {
+      error: () => {
         this._snackBar.open('Error al cargar mascota', 'Cerrar', {
           duration: 3000
         });
@@ -46,12 +56,47 @@ export class VerMascotaComponent implements OnInit {
     });
   }
 
-  volver(): void {
-    // Navegar de vuelta al listado
-    // Por ejemplo, si usás Router:
-    // this.router.navigate(['/listadoMascota']);
+  cargarHistorial(mascotaId: string | number): void {
+    this._historialService.getByMascota(mascotaId).subscribe({
+      next: (data) => {
+        this.historial = data;
+      },
+      error: () => {
+        this._snackBar.open('Error al cargar historial', 'Cerrar', {
+          duration: 3000
+        });
+      }
+    });
+  }
+
+  agregarHistorial(): void {
+    if (!this.id) return;
+
+    this.router.navigate(['/historial-mascota/agregar', this.id]);
+  }
+
+  editarHistorial(id: number): void {
+    this.router.navigate(['/historial-mascota/editar', id]);
+  }
+
+  eliminarHistorial(id: number): void {
+    if (!confirm('Seguro que queres eliminar este historial?')) return;
+
+    this._historialService.delete(id).subscribe({
+      next: () => {
+        if (this.id) {
+          this.cargarHistorial(this.id);
+        }
+
+        this._snackBar.open('Historial eliminado correctamente', '', {
+          duration: 3000
+        });
+      },
+      error: () => {
+        this._snackBar.open('Error al eliminar historial', 'Cerrar', {
+          duration: 3000
+        });
+      }
+    });
   }
 }
-
-
-

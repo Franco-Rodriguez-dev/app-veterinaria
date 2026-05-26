@@ -1,0 +1,29 @@
+<div class="title">
+  <h1>Detalle historial</h1>
+</div>
+
+<div class="container">
+  <mat-card class="card" *ngIf="historial">
+    <mat-card-title>{{ historial.titulo }}</mat-card-title>
+
+    <mat-card-content class="detail-grid">
+      <p><strong>Fecha:</strong> {{ historial.fecha | date: 'dd/MM/yyyy' }}</p>
+      <p><strong>Tipo:</strong> {{ historial.tipo }}</p>
+      <p><strong>Precio:</strong> {{ historial.precio ? ('$' + historial.precio) : '-' }}</p>
+      <p>
+        <strong>Proxima visita:</strong>
+        {{ historial.proximaVisita ? (historial.proximaVisita | date: 'dd/MM/yyyy') : '-' }}
+      </p>
+      <p class="full"><strong>Descripcion:</strong> {{ historial.descripcion }}</p>
+      <p class="full"><strong>Observaciones:</strong> {{ historial.observaciones || '-' }}</p>
+    </mat-card-content>
+
+  </mat-card>
+
+  <div class="page-actions" *ngIf="historial">
+    <button mat-raised-button color="primary" class="back-action" (click)="volver()">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+      Volver
+    </button>
+  </div>
+</div>
