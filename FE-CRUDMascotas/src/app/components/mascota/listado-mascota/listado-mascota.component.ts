@@ -23,7 +23,7 @@ import { Spinner } from '../../../shared/spinner/spinner';
 
 
 export class ListadoMascotaComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['nombre','edad','raza','color','peso'];//,'acciones'
+  displayedColumns: string[] = ['nombre','edad','raza','color','peso','acciones'];
   dataSource = new MatTableDataSource<Mascota>();
   loading: boolean = false;
 

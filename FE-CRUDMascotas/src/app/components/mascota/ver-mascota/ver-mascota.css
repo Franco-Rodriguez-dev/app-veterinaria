@@ -1,4 +1,65 @@
-.card{
-    margin-top: 5px;
-    text-align: center;
+.card {
+  margin-bottom: 22px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+}
+
+.mascota-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 20px;
+}
+
+.mascota-grid p {
+  margin: 0;
+}
+
+.historial-section {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.historial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.historial-header h2 {
+  margin: 0;
+  color: var(--color-primary-dark);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.primary-action {
+  background: var(--color-primary) !important;
+  color: white !important;
+}
+
+.empty-state {
+  padding: 22px 16px;
+  color: var(--color-muted);
+}
+
+table {
+  width: 100%;
+}
+
+@media (max-width: 680px) {
+  .mascota-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .historial-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
 }
