@@ -19,8 +19,26 @@
   grid-column: 1 / -1;
 }
 
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.page-actions .back-action {
+  margin: 0;
+}
+
 @media (max-width: 680px) {
   .detail-grid {
     grid-template-columns: 1fr;
+  }
+
+  .page-actions {
+    justify-content: stretch;
+  }
+
+  .page-actions .back-action {
+    width: 100%;
   }
 }

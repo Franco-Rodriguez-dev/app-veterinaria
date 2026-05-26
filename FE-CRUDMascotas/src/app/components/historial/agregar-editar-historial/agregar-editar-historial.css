@@ -18,6 +18,7 @@
 .acciones {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 12px;
   margin-top: 18px;
 }
@@ -26,6 +27,11 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-width: 132px;
+}
+
+.acciones .back-action {
+  margin: 0;
 }
 
 @media (max-width: 720px) {
@@ -36,5 +42,9 @@
   .acciones {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .acciones button {
+    width: 100%;
   }
 }

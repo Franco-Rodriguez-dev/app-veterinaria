@@ -18,11 +18,12 @@
       <p class="full"><strong>Observaciones:</strong> {{ historial.observaciones || '-' }}</p>
     </mat-card-content>
 
-    <mat-card-actions>
-      <button mat-raised-button class="back-action" (click)="volver()">
-        <mat-icon fontIcon="arrow_back"></mat-icon>
-        Volver
-      </button>
-    </mat-card-actions>
   </mat-card>
+
+  <div class="page-actions" *ngIf="historial">
+    <button mat-raised-button color="primary" class="back-action" (click)="volver()">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+      Volver
+    </button>
+  </div>
 </div>

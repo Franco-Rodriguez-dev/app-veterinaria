@@ -4,19 +4,13 @@
 
 <div class="conteiner">
   <mat-card class="card">
-    <mat-card-title>{{ mascota?.nombre }}</mat-card-title>
+    <mat-card-title class="mascota-title">{{ mascota?.nombre | uppercase }}</mat-card-title>
     <mat-card-content class="mascota-grid">
       <p><strong>Raza:</strong> {{ mascota?.raza }}</p>
       <p><strong>Color:</strong> {{ mascota?.color }}</p>
       <p><strong>Peso:</strong> {{ mascota?.peso }} kgs</p>
       <p><strong>Edad:</strong> {{ mascota?.edad }} anos</p>
     </mat-card-content>
-    <mat-card-actions>
-      <button type="button" routerLink="/listadoMascota" mat-raised-button class="back-action">
-        <mat-icon fontIcon="arrow_back"></mat-icon>
-        Volver
-      </button>
-    </mat-card-actions>
   </mat-card>
 
   <section class="historial-section">
@@ -99,4 +93,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </section>
+
+  <div class="page-actions">
+    <button type="button" routerLink="/listadoMascota" mat-raised-button color="primary" class="back-action">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+      Volver
+    </button>
+  </div>
 </div>
