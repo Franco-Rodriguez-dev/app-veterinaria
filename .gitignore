@@ -3,8 +3,8 @@ FE-CRUDMascotas/node_modules/
 FE-CRUDMascotas/dist/
 
 # .NET
-BE-CRUDMascotas/bin/
-BE-CRUDMascotas/obj/
+**/bin/
+**/obj/
 
 # Visual Studio
 .vs/
