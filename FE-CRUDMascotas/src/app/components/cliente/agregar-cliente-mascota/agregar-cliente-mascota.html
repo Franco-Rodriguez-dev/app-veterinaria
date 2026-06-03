@@ -1,0 +1,110 @@
+<div class="title">
+  <h1>Nuevo cliente</h1>
+</div>
+
+<div class="container">
+  <form [formGroup]="formCliente" (ngSubmit)="guardar()">
+    <mat-card class="card">
+      <mat-card-title>Datos del cliente</mat-card-title>
+      <mat-card-content class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" />
+          <mat-error *ngIf="formCliente.get('nombre')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" />
+          <mat-error *ngIf="formCliente.get('apellido')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Edad</mat-label>
+          <input matInput type="number" formControlName="edad" />
+          <mat-error *ngIf="formCliente.get('edad')?.invalid">Ingrese una edad valida</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Sexo</mat-label>
+          <mat-select formControlName="sexo">
+            <mat-option value="Masculino">Masculino</mat-option>
+            <mat-option value="Femenino">Femenino</mat-option>
+            <mat-option value="Otro">Otro</mat-option>
+          </mat-select>
+          <mat-error *ngIf="formCliente.get('sexo')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Telefono</mat-label>
+          <input matInput formControlName="telefono" />
+          <mat-error *ngIf="formCliente.get('telefono')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-title>Datos de acceso</mat-card-title>
+      <mat-card-content class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Usuario</mat-label>
+          <input matInput formControlName="username" autocomplete="off" />
+          <mat-error *ngIf="formCliente.get('username')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contrasena</mat-label>
+          <input matInput type="password" formControlName="password" autocomplete="new-password" />
+          <mat-error *ngIf="formCliente.get('password')?.invalid">Minimo 6 caracteres</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card">
+      <mat-card-title>Datos de la mascota</mat-card-title>
+      <mat-card-content class="form-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre mascota</mat-label>
+          <input matInput formControlName="nombreMascota" />
+          <mat-error *ngIf="formCliente.get('nombreMascota')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Raza</mat-label>
+          <input matInput formControlName="raza" />
+          <mat-error *ngIf="formCliente.get('raza')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Color</mat-label>
+          <input matInput formControlName="color" />
+          <mat-error *ngIf="formCliente.get('color')?.invalid">Requerido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Edad mascota</mat-label>
+          <input matInput type="number" formControlName="edadMascota" />
+          <mat-error *ngIf="formCliente.get('edadMascota')?.invalid">Ingrese una edad valida</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Peso (kg)</mat-label>
+          <input matInput type="number" formControlName="peso" />
+          <mat-error *ngIf="formCliente.get('peso')?.invalid">Ingrese un peso valido</mat-error>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="acciones">
+      <button mat-raised-button color="primary" type="button" class="back-action" (click)="cancelar()">
+        <mat-icon fontIcon="arrow_back"></mat-icon>
+        Volver
+      </button>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="loading">
+        <mat-icon fontIcon="save"></mat-icon>
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

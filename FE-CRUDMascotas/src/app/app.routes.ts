@@ -28,6 +28,9 @@ import { VerVeterinaria } from './components/veterinaria/ver-veterinaria/ver-vet
 import { AgregarEditarHistorial } from './components/historial/agregar-editar-historial/agregar-editar-historial';
 import { VerHistorial } from './components/historial/ver-historial/ver-historial';
 
+// componentes de Cliente
+import { AgregarClienteMascota } from './components/cliente/agregar-cliente-mascota/agregar-cliente-mascota';
+
 
 export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar las rutas en la pagina 
 
@@ -41,6 +44,9 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
 
   // Agregar nuevo registro (persona + mascota)
   { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria , canActivate: [authGuard, roleGuard],data: { roles: ['Administrador'] }},
+
+  // Crear cliente con usuario y mascota inicial
+  { path: 'cliente/agregar-con-mascota', component: AgregarClienteMascota, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] }},
 
   // Editar registro existente
   { path: 'editar/:id', component: AgregarEditarVeterinaria, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
