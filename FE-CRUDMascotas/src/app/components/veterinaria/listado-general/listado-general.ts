@@ -96,6 +96,10 @@ applyFilter(event: Event) {
 agregar() {
   this.router.navigate(['/agregar-veterinaria']);} 
 
+agregarCliente() {
+  this.router.navigate(['/cliente/agregar-con-mascota']);
+}
+
 
 
 }
