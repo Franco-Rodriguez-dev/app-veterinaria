@@ -78,5 +78,38 @@ namespace BE_CRUDMascotas.models.Repository
                 NombreMascota = mascota.Nombre
             };
         }
+
+        public async Task<MiPerfilClienteDTO?> GetMiPerfilAsync(int usuarioId)
+        {
+            var usuario = await _context.Usuarios
+                // Include trae la relacion directa: Usuario -> Persona.
+                .Include(u => u.Persona)
+                    // ThenInclude trae una relacion dentro de Persona: Persona -> ListMascotas.
+                    .ThenInclude(p => p.ListMascotas)
+                .FirstOrDefaultAsync(u => u.Id == usuarioId);
+
+            // Si no existe el usuario o no tiene persona asociada, no hay perfil para devolver.
+            if (usuario?.Persona == null)
+                return null;
+
+            return new MiPerfilClienteDTO
+            {
+                PersonaId = usuario.Persona.Id,
+                Nombre = usuario.Persona.Nombre,
+                Apellido = usuario.Persona.Apellido,
+                Edad = usuario.Persona.Edad,
+                Sexo = usuario.Persona.Sexo,
+                Telefono = usuario.Persona.Telefono,
+                Mascotas = usuario.Persona.ListMascotas.Select(m => new MiPerfilMascotaDTO
+                {
+                    MascotaId = m.ID,
+                    Nombre = m.Nombre,
+                    Raza = m.Raza,
+                    Color = m.Color,
+                    Edad = m.Edad,
+                    Peso = m.Peso
+                }).ToList()
+            };
+        }
     }
 }
