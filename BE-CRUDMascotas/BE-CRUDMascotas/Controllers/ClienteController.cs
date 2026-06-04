@@ -2,6 +2,7 @@ using BE_CRUDMascotas.models.DTO;
 using BE_CRUDMascotas.models.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BE_CRUDMascotas.Controllers
 {
@@ -33,6 +34,29 @@ namespace BE_CRUDMascotas.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [Authorize]
+        [HttpGet("mi-perfil")]
+        public async Task<ActionResult<MiPerfilClienteDTO>> GetMiPerfil()
+        {
+            var userId = GetUserId();
+
+            if (userId == null)
+                return Unauthorized("Token invalido.");
+
+            var perfil = await _clienteRepository.GetMiPerfilAsync(userId.Value);
+
+            if (perfil == null)
+                return NotFound("No se encontro un perfil asociado al usuario logueado.");
+
+            return Ok(perfil);
+        }
+
+        private int? GetUserId()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return int.TryParse(claim, out var userId) ? userId : null;
         }
     }
 }
