@@ -41,6 +41,8 @@ namespace BE_CRUDMascotas.models
         [Display(Name = "Teléfono")]
         public string Telefono { get; set; } = "";
 
+        public bool Activo { get; set; } = true;
+
         // Relación 1:N con Mascotas
         [InverseProperty("Persona")]
         public List<Mascota> ListMascotas { get; set; } = new(); // inicializada para evitar null

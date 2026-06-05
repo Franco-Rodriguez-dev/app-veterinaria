@@ -26,5 +26,7 @@ namespace BE_CRUDMascotas.models
 
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
+        public bool Activo { get; set; } = true;
+
     }
 }

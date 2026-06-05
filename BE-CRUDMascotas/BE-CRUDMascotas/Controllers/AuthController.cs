@@ -38,6 +38,11 @@ namespace BE_CRUDMascotas.Controllers
                 return Unauthorized("Usuario o contraseña incorrectos");
             }
 
+            if (!usuario.Activo)
+            {
+                return Unauthorized("El usuario esta dado de baja.");
+            }
+
          //2.validar contraseña con BCrypt
             bool passwordValido = BCrypt.Net.BCrypt.Verify(dto.Password, usuario.PasswordHash);
 

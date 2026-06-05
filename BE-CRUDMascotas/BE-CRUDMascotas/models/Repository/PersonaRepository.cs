@@ -17,13 +17,16 @@ namespace BE_CRUDMascotas.models.Repository
         {
             return await _context.Personas
                 .AsNoTracking()
+                .Where(p => p.Activo)
                 .Include(p => p.ListMascotas)
                 .ToListAsync();
         }
 
         public async Task<Personas?> GetByIdAsync(int id, bool includeMascotas = false)
         {
-            IQueryable<Personas> query = _context.Personas.AsNoTracking();
+            IQueryable<Personas> query = _context.Personas
+                .AsNoTracking()
+                .Where(p => p.Activo);
 
             if (includeMascotas)
                 query = query.Include(per => per.ListMascotas);
