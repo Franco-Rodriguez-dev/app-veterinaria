@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import {
   ClienteMascotaUsuarioCreate,
-  ClienteMascotaUsuarioResponse
+  ClienteMascotaUsuarioResponse,
+  MiPerfilCliente
 } from '../interfaces/cliente';
 
 @Injectable({
@@ -20,5 +21,9 @@ export class ClienteService {
       `${this.baseUrl}/crear-usuario-con-mascota`,
       data
     );
+  }
+
+  getMiPerfil(): Observable<MiPerfilCliente> {
+    return this.http.get<MiPerfilCliente>(`${this.baseUrl}/mi-perfil`);
   }
 }

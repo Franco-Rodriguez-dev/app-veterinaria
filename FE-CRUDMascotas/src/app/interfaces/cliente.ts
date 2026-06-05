@@ -23,3 +23,22 @@ export interface ClienteMascotaUsuarioResponse {
   nombreCompleto: string;
   nombreMascota: string;
 }
+
+export interface MiPerfilMascota {
+  mascotaId: number;
+  nombre: string;
+  raza: string;
+  color: string;
+  edad: number;
+  peso: number;
+}
+
+export interface MiPerfilCliente {
+  personaId: number;
+  nombre: string;
+  apellido: string;
+  edad: number;
+  sexo: Sexo;
+  telefono: string;
+  mascotas: MiPerfilMascota[];
+}

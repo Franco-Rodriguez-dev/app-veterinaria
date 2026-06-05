@@ -37,7 +37,8 @@ export class Login {
 
     this.authService.saveSession(res);
 
-    this.router.navigate(['/listadoGeneral']);
+    const rutaInicial = res.rol === 'Cliente' ? '/mi-perfil' : '/listadoGeneral';
+    this.router.navigate([rutaInicial]);
       });
   }
 }

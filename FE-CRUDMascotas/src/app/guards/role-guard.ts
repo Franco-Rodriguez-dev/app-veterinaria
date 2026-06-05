@@ -10,13 +10,14 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const rol = auth.getRol();
 
   // roles permitidos definidos en la ruta
- const rolesPermitidos = route.data?.['roles'] || [];
+  const rolesPermitidos = route.data?.['roles'] || [];
 
   if (rol && rolesPermitidos.includes(rol)) {
     return true;
   }
 
   // ❌ no autorizado
-  router.navigate(['/login']);
+  const ruta = rol === 'Cliente' ? '/mi-perfil' : '/login';
+  router.navigate([ruta]);
   return false;
 };
