@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MaterialModules } from '../../../shared/material';
 import { HistorialMascota } from '../../../interfaces/historial-mascota';
 import { HistorialMascotaService } from '../../../service/historial-mascota';
+import { Auth } from '../../../service/auth';
 
 @Component({
   selector: 'app-ver-historial',
@@ -18,6 +19,7 @@ export class VerHistorial {
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
   private historialService = inject(HistorialMascotaService);
+  private authService = inject(Auth);
 
   historial: HistorialMascota | undefined;
 
@@ -42,6 +44,7 @@ export class VerHistorial {
       return;
     }
 
-    this.router.navigate(['/listadoMascota']);
+    const ruta = this.authService.getRol() === 'Cliente' ? '/mi-perfil' : '/listadoMascota';
+    this.router.navigate([ruta]);
   }
 }

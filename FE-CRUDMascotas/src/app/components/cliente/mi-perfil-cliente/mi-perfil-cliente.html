@@ -1,0 +1,52 @@
+<div class="title">
+  <h1>Mi perfil</h1>
+</div>
+
+<div class="perfil-container">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+  <ng-container *ngIf="perfil && !loading">
+    <mat-card class="profile-card">
+      <mat-card-title>{{ perfil.nombre }} {{ perfil.apellido }}</mat-card-title>
+
+      <mat-card-content class="profile-grid">
+        <p><strong>Telefono:</strong> {{ perfil.telefono }}</p>
+        <p><strong>Edad:</strong> {{ perfil.edad }} anos</p>
+        <p><strong>Sexo:</strong> {{ perfil.sexo }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <section class="mascotas-section">
+      <div class="section-header">
+        <h2>Mis mascotas</h2>
+      </div>
+
+      <div class="empty-state" *ngIf="perfil.mascotas.length === 0">
+        Todavia no tenes mascotas asociadas a tu perfil.
+      </div>
+
+      <div class="mascotas-grid" *ngIf="perfil.mascotas.length > 0">
+        <mat-card class="pet-card" *ngFor="let mascota of perfil.mascotas">
+          <mat-card-title>
+            <mat-icon fontIcon="pets"></mat-icon>
+            {{ mascota.nombre | uppercase }}
+          </mat-card-title>
+
+          <mat-card-content class="pet-detail">
+            <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+            <p><strong>Color:</strong> {{ mascota.color }}</p>
+            <p><strong>Edad:</strong> {{ mascota.edad }} anos</p>
+            <p><strong>Peso:</strong> {{ mascota.peso }} kgs</p>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" class="primary-action" (click)="verHistorial(mascota.mascotaId)">
+              <mat-icon fontIcon="medical_services"></mat-icon>
+              Ver historial
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </section>
+  </ng-container>
+</div>

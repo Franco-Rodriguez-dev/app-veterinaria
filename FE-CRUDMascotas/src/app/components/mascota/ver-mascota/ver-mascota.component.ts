@@ -99,4 +99,9 @@ export class VerMascotaComponent implements OnInit {
       }
     });
   }
+
+  volver(): void {
+    const ruta = this.rol === 'Cliente' ? '/mi-perfil' : '/listadoMascota';
+    this.router.navigate([ruta]);
+  }
 }

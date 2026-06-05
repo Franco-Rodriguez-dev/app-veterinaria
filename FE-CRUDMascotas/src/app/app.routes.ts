@@ -30,6 +30,7 @@ import { VerHistorial } from './components/historial/ver-historial/ver-historial
 
 // componentes de Cliente
 import { AgregarClienteMascota } from './components/cliente/agregar-cliente-mascota/agregar-cliente-mascota';
+import { MiPerfilClienteComponent } from './components/cliente/mi-perfil-cliente/mi-perfil-cliente';
 
 
 export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar las rutas en la pagina 
@@ -40,7 +41,7 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
   //{ path: '', redirectTo:'listadoGeneral', pathMatch: 'full'   }, // Página inicial---modificar esto ahora 
 
   // 🧩 Tu nuevo listado combinado
-  { path: 'listadoGeneral', component: ListadoGeneralComponent, canActivate: [authGuard] },
+  { path: 'listadoGeneral', component: ListadoGeneralComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
 
   // Agregar nuevo registro (persona + mascota)
   { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria , canActivate: [authGuard, roleGuard],data: { roles: ['Administrador'] }},
@@ -48,14 +49,17 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
   // Crear cliente con usuario y mascota inicial
   { path: 'cliente/agregar-con-mascota', component: AgregarClienteMascota, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] }},
 
+  // Perfil del cliente logueado
+  { path: 'mi-perfil', component: MiPerfilClienteComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Cliente'] }},
+
   // Editar registro existente
   { path: 'editar/:id', component: AgregarEditarVeterinaria, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
 
   // Ver detalles
-  { path: 'ver/:id', component: VerVeterinaria, canActivate: [authGuard] },
+  { path: 'ver/:id', component: VerVeterinaria, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
 
 // Rutas de Mascota
-  { path: 'listadoMascota', component: ListadoMascotaComponent, canActivate: [authGuard] },
+  { path: 'listadoMascota', component: ListadoMascotaComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'mascota/agregar', component: AgregarEditarMascotaComponent, canActivate:[authGuard, roleGuard], data: { roles: ['Administrador'] }},
   { path: 'mascota/editar/:id', component: AgregarEditarMascotaComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } }, // Usamos el mismo para editar y va incrementando el id de las mascotas que muestra
   { path: 'mascota/ver/:id', component: VerMascotaComponent, canActivate: [authGuard] },
@@ -66,10 +70,10 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
   { path: 'historial-mascota/ver/:id', component: VerHistorial, canActivate: [authGuard] },
 
 //  Rutas de Persona
-  { path: 'listadoPersona' , component: ListadoPersonaComponent, canActivate: [authGuard] },
+  { path: 'listadoPersona' , component: ListadoPersonaComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'agregarPersona' , component: AgregarEditarPersona, canActivate:[authGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'editarPersona/:id' , component: AgregarEditarPersona, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
-  { path: 'persona/ver/:id' , component: VerPersonaComponent, canActivate: [authGuard] },
+  { path: 'persona/ver/:id' , component: VerPersonaComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
 
 
   { path: '**',  redirectTo:'listadoGeneral', pathMatch: 'full'  } // Redirige cualquier ruta desconocida al listado
