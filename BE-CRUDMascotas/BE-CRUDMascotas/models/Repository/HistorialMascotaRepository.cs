@@ -87,7 +87,7 @@ namespace BE_CRUDMascotas.models.Repository
 
         public async Task<bool> MascotaExistsAsync(int mascotaId)
         {
-            return await _context.Mascota.AnyAsync(m => m.ID == mascotaId);
+            return await _context.Mascota.AnyAsync(m => m.ID == mascotaId && m.Activo);
         }
 
         public async Task<bool> MascotaPerteneceAUsuarioAsync(int mascotaId, int usuarioId)
@@ -100,7 +100,7 @@ namespace BE_CRUDMascotas.models.Repository
                 return false;
 
             return await _context.Mascota
-                .AnyAsync(m => m.ID == mascotaId && m.PersonaId == usuario.PersonaId.Value);
+                .AnyAsync(m => m.ID == mascotaId && m.Activo && m.PersonaId == usuario.PersonaId.Value);
         }
 
         public async Task<int?> GetMascotaIdByHistorialAsync(int historialId)

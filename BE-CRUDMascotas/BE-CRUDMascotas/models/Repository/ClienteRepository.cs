@@ -86,10 +86,10 @@ namespace BE_CRUDMascotas.models.Repository
                 .Include(u => u.Persona)
                     // ThenInclude trae una relacion dentro de Persona: Persona -> ListMascotas.
                     .ThenInclude(p => p.ListMascotas)
-                .FirstOrDefaultAsync(u => u.Id == usuarioId);
+                .FirstOrDefaultAsync(u => u.Id == usuarioId && u.Activo);
 
             // Si no existe el usuario o no tiene persona asociada, no hay perfil para devolver.
-            if (usuario?.Persona == null)
+            if (usuario?.Persona == null || !usuario.Persona.Activo)
                 return null;
 
             return new MiPerfilClienteDTO
@@ -100,15 +100,17 @@ namespace BE_CRUDMascotas.models.Repository
                 Edad = usuario.Persona.Edad,
                 Sexo = usuario.Persona.Sexo,
                 Telefono = usuario.Persona.Telefono,
-                Mascotas = usuario.Persona.ListMascotas.Select(m => new MiPerfilMascotaDTO
-                {
-                    MascotaId = m.ID,
-                    Nombre = m.Nombre,
-                    Raza = m.Raza,
-                    Color = m.Color,
-                    Edad = m.Edad,
-                    Peso = m.Peso
-                }).ToList()
+                Mascotas = usuario.Persona.ListMascotas
+                    .Where(m => m.Activo)
+                    .Select(m => new MiPerfilMascotaDTO
+                    {
+                        MascotaId = m.ID,
+                        Nombre = m.Nombre,
+                        Raza = m.Raza,
+                        Color = m.Color,
+                        Edad = m.Edad,
+                        Peso = m.Peso
+                    }).ToList()
             };
         }
     }

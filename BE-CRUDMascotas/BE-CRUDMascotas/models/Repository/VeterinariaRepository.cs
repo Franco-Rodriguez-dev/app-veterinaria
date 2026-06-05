@@ -22,6 +22,7 @@ namespace BE_CRUDMascotas.models.Repository
             {
                 var lista = await (from p in _context.Personas
                                    join m in _context.Mascota on p.Id equals m.PersonaId
+                                   where p.Activo && m.Activo
                                    select new { p, m }).ToListAsync();
 
                 return lista.Select(x => new PersonaMascotaListDTO
@@ -63,13 +64,30 @@ namespace BE_CRUDMascotas.models.Repository
         {
             var persona = await _context.Personas
                 .Include(p => p.ListMascotas)
+                    .ThenInclude(m => m.Historiales)
+                .Include(p => p.Usuario)
                 .FirstOrDefaultAsync(p => p.Id == personaId);
 
             if (persona == null)
                 throw new Exception("Persona no encontrada");
 
-            _context.Mascota.RemoveRange(persona.ListMascotas);
-            _context.Personas.Remove(persona);
+            persona.Activo = false;
+
+            if (persona.Usuario != null)
+            {
+                persona.Usuario.Activo = false;
+            }
+
+            foreach (var mascota in persona.ListMascotas)
+            {
+                mascota.Activo = false;
+
+                foreach (var historial in mascota.Historiales)
+                {
+                    historial.Activo = false;
+                }
+            }
+
             await _context.SaveChangesAsync();
         }
 
@@ -77,7 +95,7 @@ namespace BE_CRUDMascotas.models.Repository
         {
             var persona = await _context.Personas
                 .Include(p => p.ListMascotas)
-                .FirstOrDefaultAsync(p => p.Id == personaId);
+                .FirstOrDefaultAsync(p => p.Id == personaId && p.Activo);
 
             if (persona == null)
                 throw new Exception("Persona no encontrada");
@@ -107,7 +125,7 @@ namespace BE_CRUDMascotas.models.Repository
         {
             var persona = await _context.Personas
                 .Include(p => p.ListMascotas)
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id && p.Activo);
 
             if (persona == null) return null;
 

@@ -22,25 +22,41 @@ namespace BE_CRUDMascotas.models.Repository
 
         public async Task DeleteMascota(Mascota mascota)
         {
-            _context.Mascota.Remove(mascota);
+            var mascotaItem = await _context.Mascota
+                .Include(m => m.Historiales)
+                .FirstOrDefaultAsync(m => m.ID == mascota.ID);
+
+            if (mascotaItem == null)
+                return;
+
+            mascotaItem.Activo = false;
+
+            foreach (var historial in mascotaItem.Historiales)
+            {
+                historial.Activo = false;
+            }
+
             await _context.SaveChangesAsync();
         }
 
         public async Task<List<Mascota>> GetListMascota()
         {
-           return await _context.Mascota.ToListAsync();
+           return await _context.Mascota
+                .Where(m => m.Activo)
+                .ToListAsync();
         }
 
         public async Task<Mascota> GetMascota(int id)
         {
-           return await _context.Mascota.FindAsync(id);
+           return await _context.Mascota
+                .FirstOrDefaultAsync(m => m.ID == id && m.Activo);
 
            
         }
 
         public async Task UpdateMascota(Mascota mascota)
         {
-            var mascotaItem = await _context.Mascota.FirstOrDefaultAsync(x => x.ID == mascota.ID);
+            var mascotaItem = await _context.Mascota.FirstOrDefaultAsync(x => x.ID == mascota.ID && x.Activo);
 
             if (mascotaItem != null)
             {
