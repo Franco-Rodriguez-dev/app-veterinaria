@@ -65,7 +65,7 @@ public class VeterinariaController : ControllerBase
         if (existe == null)
             return NotFound("No se encontró la persona.");
 
-        
+
 
         await _repo.UpdateConMascotaAsync(id, dto);
 
@@ -98,6 +98,41 @@ public class VeterinariaController : ControllerBase
             return NotFound("No se encontró la persona.");
 
         return Ok(data);
+    }
+
+    [Authorize(Roles = "Administrador")]
+    [HttpPut("reactivar-cliente/{personaId}")]
+    public async Task<IActionResult> ReactivarClienteAsync(int personaId)
+    {
+        var resultado = await _repo.ReactivarClienteAsync(personaId);
+
+        switch (resultado)
+        {
+            case ReactivarClienteResultado.Reactivado:
+                return Ok("Cliente reactivado correctamente.");
+
+            case ReactivarClienteResultado.NoEncontrado:
+                return NotFound("No se encontro el cliente.");
+
+            case ReactivarClienteResultado.YaActivo:
+                return BadRequest("El cliente ya se encuentra activo.");
+
+            case ReactivarClienteResultado.SinUsuario:
+                return BadRequest("No se puede reactivar porque el cliente no tiene usuario asociado.");
+
+            default:
+                return BadRequest("No se pudo reactivar el cliente.");
+        }
+
+    }
+
+    [Authorize(Roles = "Administrador")]
+    [HttpGet("clientes-inactivos")]
+    public async Task<ActionResult<List<ClienteInactivoDTO>>> GetClientesInactivosAsync()
+    {
+        var clientesInactivos = await _repo.GetClientesInactivosAsync();
+
+        return Ok(clientesInactivos);
     }
 
     [AllowAnonymous]

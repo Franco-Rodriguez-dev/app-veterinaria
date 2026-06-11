@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BE_CRUDMascotas.models.DTO;
+using BE_CRUDMascotas.models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace BE_CRUDMascotas.models.Repository
 {
@@ -148,6 +150,65 @@ namespace BE_CRUDMascotas.models.Repository
                 }
             };
         }
+       public async Task<List<ClienteInactivoDTO>> GetClientesInactivosAsync()
+        {
+            var ClientesInactivos = await _context.Personas
+                .Include(p => p.Usuario)
+                .Include(p => p.ListMascotas)
+                .Where(p => !p.Activo)
+                .Where(p => p.Usuario != null)
+                .Select(p => new ClienteInactivoDTO
+                {
+                    PersonaId = p.Id,
+                    Nombre = p.Nombre,
+                    Apellido = p.Apellido,
+                    Telefono = p.Telefono,
+                    Username = p.Usuario.Username,
+                    CantidadMascotas = p.ListMascotas.Count
+
+                })
+                .ToListAsync();
+            return ClientesInactivos;
+
+                
+        }
+
+        public async Task<ReactivarClienteResultado> ReactivarClienteAsync(int personaId)
+        {
+            var persona = await _context.Personas
+                .Include(p => p.Usuario)
+                .Include(p => p.ListMascotas)
+                   .ThenInclude(m => m.Historiales)
+                 .FirstOrDefaultAsync(p => p.Id == personaId);
+
+            if (persona == null)
+                return ReactivarClienteResultado.NoEncontrado;
+
+            if (persona.Activo)
+                return ReactivarClienteResultado.YaActivo;
+
+            if (persona.Usuario == null)
+                return ReactivarClienteResultado.SinUsuario;
+
+            persona.Activo = true;
+            persona.Usuario.Activo = true;
+
+            foreach (var mascota in persona.ListMascotas)
+            {
+                mascota.Activo = true;
+
+                foreach (var historial in mascota.Historiales)
+                {
+                    historial.Activo = true;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return ReactivarClienteResultado.Reactivado;
+        }
+
 
     }
+
+    
 }
