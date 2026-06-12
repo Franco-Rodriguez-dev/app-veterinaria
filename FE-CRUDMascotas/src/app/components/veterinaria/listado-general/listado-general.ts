@@ -100,6 +100,10 @@ agregarCliente() {
   this.router.navigate(['/cliente/agregar-con-mascota']);
 }
 
+verClientesInactivos() {
+  this.router.navigate(['/clientes-inactivos']);
+}
+
 
 
 }

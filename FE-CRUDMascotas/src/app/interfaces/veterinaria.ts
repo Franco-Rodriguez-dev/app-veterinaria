@@ -10,4 +10,13 @@ export interface Veterinaria {
   peso: number;
 }
 
+export interface ClienteInactivo {
+  personaId: number;
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  username: string;
+  cantidadMascotas: number;
+}
+
 
