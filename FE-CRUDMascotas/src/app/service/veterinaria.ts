@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Veterinaria } from '../interfaces/veterinaria';
+import { ClienteInactivo, Veterinaria } from '../interfaces/veterinaria';
 import { VeterinariaDetalle } from '../interfaces/veterinaria-detalle';
 
 @Injectable({
@@ -22,6 +22,16 @@ export class VeterinariaService {
   // 🔹 Obtener listado general
   getListadoGeneral(): Observable<Veterinaria[]> {
     return this.http.get<Veterinaria[]>(`${this.baseUrl}/listadoGeneral`);
+  }
+
+  getClientesInactivos(): Observable<ClienteInactivo[]> {
+    return this.http.get<ClienteInactivo[]>(`${this.baseUrl}/clientes-inactivos`);
+  }
+
+  reactivarCliente(personaId: number): Observable<string> {
+    return this.http.put(`${this.baseUrl}/reactivar-cliente/${personaId}`, null, {
+      responseType: 'text'
+    });
   }
 
   // 🔹 Eliminar persona + sus mascotas

@@ -23,6 +23,7 @@ import { VerPersonaComponent } from './components/persona/ver-persona/ver-person
 import { ListadoGeneralComponent } from './components/veterinaria/listado-general/listado-general';
 import { AgregarEditarVeterinaria } from './components/veterinaria/agregar-editar-veterinaria/agregar-editar-veterinaria';
 import { VerVeterinaria } from './components/veterinaria/ver-veterinaria/ver-veterinaria';
+import { ClientesInactivos } from './components/veterinaria/clientes-inactivos/clientes-inactivos';
 
 // componentes de Historial
 import { AgregarEditarHistorial } from './components/historial/agregar-editar-historial/agregar-editar-historial';
@@ -42,6 +43,7 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
 
   // 🧩 Tu nuevo listado combinado
   { path: 'listadoGeneral', component: ListadoGeneralComponent, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
+  { path: 'clientes-inactivos', component: ClientesInactivos, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador'] } },
 
   // Agregar nuevo registro (persona + mascota)
   { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria , canActivate: [authGuard, roleGuard],data: { roles: ['Administrador'] }},

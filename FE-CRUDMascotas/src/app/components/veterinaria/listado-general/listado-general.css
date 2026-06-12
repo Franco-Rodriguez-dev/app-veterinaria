@@ -27,6 +27,10 @@
   color: #8b4e00 !important;
 }
 
+.inactive {
+  color: #7f1d1d !important;
+}
+
 .primary-action {
   background: var(--color-primary) !important;
   color: white !important;

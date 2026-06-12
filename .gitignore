@@ -1,6 +1,7 @@
 # Angular
 FE-CRUDMascotas/node_modules/
 FE-CRUDMascotas/dist/
+FE-CRUDMascotas/ng-serve*.log
 
 # .NET
 **/bin/
