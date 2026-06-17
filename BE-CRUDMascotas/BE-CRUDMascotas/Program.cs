@@ -116,6 +116,7 @@ builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IVeterinariaRepository, VeterinariaRepository>();
 builder.Services.AddScoped<IHistorialMascotaRepository, HistorialMascotaRepository>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 
 var app = builder.Build();

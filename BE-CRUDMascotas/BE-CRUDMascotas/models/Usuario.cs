@@ -28,5 +28,7 @@ namespace BE_CRUDMascotas.models
 
         public bool Activo { get; set; } = true;
 
+        public bool DebeCambiarPassword { get; set; } = false;
+
     }
 }
