@@ -1,6 +1,9 @@
 ﻿using BCrypt.Net;
 using BE_CRUDMascotas.models;
 using BE_CRUDMascotas.models.DTO;
+using BE_CRUDMascotas.models.Enums;
+using BE_CRUDMascotas.models.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,11 +20,16 @@ namespace BE_CRUDMascotas.Controllers
     {
         private readonly AplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public AuthController(AplicationDbContext context, IConfiguration configuration)
+        public AuthController(
+            AplicationDbContext context,
+            IConfiguration configuration,
+            IUsuarioRepository usuarioRepository)
         {
             _context = context;
             _configuration = configuration;
+            _usuarioRepository = usuarioRepository;
         }
 
         [HttpPost("login")]
@@ -94,6 +102,7 @@ namespace BE_CRUDMascotas.Controllers
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 usuario = usuario.Username,
                 rol = usuario.Rol.Nombre,
+                debeCambiarPassword = usuario.DebeCambiarPassword,
 
             });
 
@@ -102,6 +111,37 @@ namespace BE_CRUDMascotas.Controllers
 
 
 
+        }
+
+        [Authorize]
+        [HttpPut("cambiar-password")]
+        public async Task<IActionResult> CambiarPassword(CambiarPasswordDTO dto)
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
+                return Unauthorized("Token invalido.");
+
+            var usuarioId = int.Parse(userIdClaim.Value);
+            var resultado = await _usuarioRepository.CambiarPasswordAsync(usuarioId, dto);
+
+            switch (resultado)
+            {
+                case CambiarPasswordResultado.Cambiada:
+                    return Ok("Contraseña actualizada correctamente.");
+
+                case CambiarPasswordResultado.UsuarioNoEncontrado:
+                    return Unauthorized("Usuario no encontrado.");
+
+                case CambiarPasswordResultado.UsuarioInactivo:
+                    return BadRequest("El usuario esta dado de baja.");
+
+                case CambiarPasswordResultado.PasswordActualIncorrecta:
+                    return BadRequest("La contraseña actual es incorrecta.");
+
+                default:
+                    return BadRequest("No se pudo cambiar la contraseña.");
+            }
         }
 
 
