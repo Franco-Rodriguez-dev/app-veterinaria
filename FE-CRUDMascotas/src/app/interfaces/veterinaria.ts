@@ -1,6 +1,7 @@
 export interface Veterinaria {
     
   personaId: number;
+  usuarioId?: number | null;
   nombre: string;
   apellido: string;
   telefono: string;

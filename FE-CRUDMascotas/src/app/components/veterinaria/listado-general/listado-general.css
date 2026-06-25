@@ -36,6 +36,11 @@
   color: white !important;
 }
 
+.action-password {
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.12);
+}
+
 @media (max-width: 620px) {
   .listado {
     align-items: stretch;
