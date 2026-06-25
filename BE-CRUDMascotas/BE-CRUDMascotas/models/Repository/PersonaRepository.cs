@@ -51,7 +51,26 @@ namespace BE_CRUDMascotas.models.Repository
 
         public async Task DeleteAsync(Personas persona)
         {
-            _context.Personas.Remove(persona);
+            var personaItem = await _context.Personas
+                .Include(p => p.Usuario)
+                .Include(p => p.ListMascotas)
+                .FirstOrDefaultAsync(p => p.Id == persona.Id);
+
+            if (personaItem == null)
+                return;
+
+            personaItem.Activo = false;
+
+            if (personaItem.Usuario != null)
+            {
+                personaItem.Usuario.Activo = false;
+            }
+
+            foreach (var mascota in personaItem.ListMascotas)
+            {
+                mascota.Activo = false;
+            }
+
             await _context.SaveChangesAsync();
         }
 

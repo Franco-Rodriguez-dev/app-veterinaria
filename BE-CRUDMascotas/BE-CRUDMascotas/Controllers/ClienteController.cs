@@ -53,6 +53,23 @@ namespace BE_CRUDMascotas.Controllers
             return Ok(perfil);
         }
 
+        [Authorize(Roles = "Cliente")]
+        [HttpGet("mi-mascota/{mascotaId}")]
+        public async Task<ActionResult<MiPerfilMascotaDTO>> GetMiMascota(int mascotaId)
+        {
+            var userId = GetUserId();
+
+            if (userId == null)
+                return Unauthorized("Token invalido.");
+
+            var mascota = await _clienteRepository.GetMiMascotaAsync(userId.Value, mascotaId);
+
+            if (mascota == null)
+                return NotFound("No se encontro la mascota asociada al cliente.");
+
+            return Ok(mascota);
+        }
+
         private int? GetUserId()
         {
             var claim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

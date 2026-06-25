@@ -83,12 +83,13 @@ namespace BE_CRUDMascotas.Controllers
             //5. crear token
             //En esta parte se construye el JWT indicando quién lo emite, para quién es, qué información contiene,
             //cuándo expira y con qué credenciales se firma.
+            var expireMinutes = _configuration.GetValue<int>("Jwt:ExpireMinutes", 60);
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddDays(2),
+                expires: DateTime.Now.AddMinutes(expireMinutes),
                 signingCredentials: creds   
             );
 

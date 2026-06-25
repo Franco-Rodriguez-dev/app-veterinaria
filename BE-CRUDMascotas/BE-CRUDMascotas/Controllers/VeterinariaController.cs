@@ -11,10 +11,12 @@ using System.Security.Claims;
 public class VeterinariaController : ControllerBase
 {
     private readonly IVeterinariaRepository _repo;
+    private readonly IWebHostEnvironment _environment;
 
-    public VeterinariaController(IVeterinariaRepository repo)
+    public VeterinariaController(IVeterinariaRepository repo, IWebHostEnvironment environment)
     {
         _repo = repo;
+        _environment = environment;
     }
 
     [HttpGet("listadoGeneral")]
@@ -135,10 +137,13 @@ public class VeterinariaController : ControllerBase
         return Ok(clientesInactivos);
     }
 
-    [AllowAnonymous]
+    [Authorize(Roles = "Administrador")]
     [HttpGet("probar-error")]
     public IActionResult ProbarError()
     {
+        if (!_environment.IsDevelopment())
+            return NotFound();
+
         throw new Exception("Esto es una prueba");
     }
 

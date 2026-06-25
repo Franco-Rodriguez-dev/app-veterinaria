@@ -7,6 +7,7 @@ import {
   ClienteMascotaUsuarioResponse,
   MiPerfilCliente
 } from '../interfaces/cliente';
+import { Mascota } from '../interfaces/mascota';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class ClienteService {
 
   getMiPerfil(): Observable<MiPerfilCliente> {
     return this.http.get<MiPerfilCliente>(`${this.baseUrl}/mi-perfil`);
+  }
+
+  getMiMascota(mascotaId: string | number): Observable<Mascota> {
+    return this.http.get<Mascota>(`${this.baseUrl}/mi-mascota/${mascotaId}`);
   }
 }

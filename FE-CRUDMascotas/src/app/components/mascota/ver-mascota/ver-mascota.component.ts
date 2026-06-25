@@ -8,6 +8,7 @@ import { MaterialModules } from '../../../shared/material';
 import { HistorialMascota } from '../../../interfaces/historial-mascota';
 import { HistorialMascotaService } from '../../../service/historial-mascota';
 import { Auth } from '../../../service/auth';
+import { ClienteService } from '../../../service/cliente';
 
 @Component({
   selector: 'app-ver-mascota',
@@ -19,6 +20,7 @@ import { Auth } from '../../../service/auth';
 export class VerMascotaComponent implements OnInit {
   private _snackBar = inject(MatSnackBar);
   private _mascotaService = inject(MascotaService);
+  private _clienteService = inject(ClienteService);
   private _historialService = inject(HistorialMascotaService);
   private _authService = inject(Auth);
   private aRouter = inject(ActivatedRoute);
@@ -44,7 +46,11 @@ export class VerMascotaComponent implements OnInit {
   }
 
   cargarMascota(id: string): void {
-    this._mascotaService.getMascotasVer(id).subscribe({
+    const mascotaRequest = this.rol === 'Cliente'
+      ? this._clienteService.getMiMascota(id)
+      : this._mascotaService.getMascotasVer(id);
+
+    mascotaRequest.subscribe({
       next: (data) => {
         this.mascota = data;
       },

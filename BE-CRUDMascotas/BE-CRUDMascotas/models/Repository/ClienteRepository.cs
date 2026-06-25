@@ -113,5 +113,29 @@ namespace BE_CRUDMascotas.models.Repository
                     }).ToList()
             };
         }
+
+        public async Task<MiPerfilMascotaDTO?> GetMiMascotaAsync(int usuarioId, int mascotaId)
+        {
+            var usuario = await _context.Usuarios
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Id == usuarioId && u.Activo);
+
+            if (usuario?.PersonaId == null)
+                return null;
+
+            return await _context.Mascota
+                .AsNoTracking()
+                .Where(m => m.ID == mascotaId && m.Activo && m.PersonaId == usuario.PersonaId.Value)
+                .Select(m => new MiPerfilMascotaDTO
+                {
+                    MascotaId = m.ID,
+                    Nombre = m.Nombre,
+                    Raza = m.Raza,
+                    Color = m.Color,
+                    Edad = m.Edad,
+                    Peso = m.Peso
+                })
+                .FirstOrDefaultAsync();
+        }
     }
 }

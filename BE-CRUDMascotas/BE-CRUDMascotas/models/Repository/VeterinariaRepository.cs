@@ -67,7 +67,6 @@ namespace BE_CRUDMascotas.models.Repository
         {
             var persona = await _context.Personas
                 .Include(p => p.ListMascotas)
-                    .ThenInclude(m => m.Historiales)
                 .Include(p => p.Usuario)
                 .FirstOrDefaultAsync(p => p.Id == personaId);
 
@@ -84,11 +83,6 @@ namespace BE_CRUDMascotas.models.Repository
             foreach (var mascota in persona.ListMascotas)
             {
                 mascota.Activo = false;
-
-                foreach (var historial in mascota.Historiales)
-                {
-                    historial.Activo = false;
-                }
             }
 
             await _context.SaveChangesAsync();
@@ -179,7 +173,6 @@ namespace BE_CRUDMascotas.models.Repository
             var persona = await _context.Personas
                 .Include(p => p.Usuario)
                 .Include(p => p.ListMascotas)
-                   .ThenInclude(m => m.Historiales)
                  .FirstOrDefaultAsync(p => p.Id == personaId);
 
             if (persona == null)
@@ -197,11 +190,6 @@ namespace BE_CRUDMascotas.models.Repository
             foreach (var mascota in persona.ListMascotas)
             {
                 mascota.Activo = true;
-
-                foreach (var historial in mascota.Historiales)
-                {
-                    historial.Activo = true;
-                }
             }
 
             await _context.SaveChangesAsync();

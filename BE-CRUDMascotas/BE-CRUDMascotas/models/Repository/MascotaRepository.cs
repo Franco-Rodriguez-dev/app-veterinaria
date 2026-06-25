@@ -23,18 +23,12 @@ namespace BE_CRUDMascotas.models.Repository
         public async Task DeleteMascota(Mascota mascota)
         {
             var mascotaItem = await _context.Mascota
-                .Include(m => m.Historiales)
                 .FirstOrDefaultAsync(m => m.ID == mascota.ID);
 
             if (mascotaItem == null)
                 return;
 
             mascotaItem.Activo = false;
-
-            foreach (var historial in mascotaItem.Historiales)
-            {
-                historial.Activo = false;
-            }
 
             await _context.SaveChangesAsync();
         }

@@ -7,5 +7,6 @@ namespace BE_CRUDMascotas.models.Repository
         Task<bool> UsernameExistsAsync(string username);
         Task<ClienteMascotaUsuarioResponseDTO> CrearClienteConMascotaAsync(ClienteMascotaUsuarioCreateDTO dto);
         Task<MiPerfilClienteDTO?> GetMiPerfilAsync(int usuarioId);
+        Task<MiPerfilMascotaDTO?> GetMiMascotaAsync(int usuarioId, int mascotaId);
     }
 }
