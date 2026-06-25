@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BE_CRUDMascotas.Controllers
 {
     [Route("api/[controller]")] //El token [controller] se reemplaza por el nombre del controlador sin la palabra Controller.
     [ApiController]//Hereda funcionalidades básicas para API, como devolver JSON, códigos HTTP (Ok(), NotFound(), BadRequest(), etc.)
+    [Authorize(Roles = "Administrador")]
     public class MascotaController : ControllerBase//La clase hereda de ControllerBase.
     {
        
