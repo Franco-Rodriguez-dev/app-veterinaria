@@ -6,24 +6,6 @@
 
 <div class="listado">
   <h2>Ver listado</h2>
-  <a mat-flat-button class="list-action per" routerLink="/listadoPersona" matTooltip="Listado personas">
-    <mat-icon fontIcon="groups"></mat-icon>
-    Personas
-  </a>
-  <a mat-flat-button class="list-action masc" routerLink="/listadoMascota" matTooltip="Listado mascotas">
-    <mat-icon fontIcon="pets"></mat-icon>
-    Mascotas
-  </a>
-  <button
-    *ngIf="rol === 'Administrador'"
-    mat-flat-button
-    class="list-action inactive"
-    matTooltip="Clientes dados de baja"
-    (click)="verClientesInactivos()"
-  >
-    <mat-icon fontIcon="person_off"></mat-icon>
-    Dados de baja
-  </button>
 </div>
 
 <div class="container">

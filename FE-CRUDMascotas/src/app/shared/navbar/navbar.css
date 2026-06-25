@@ -14,7 +14,9 @@
 }
 
 .logo,
-.logout-btn {
+.logout-btn,
+.nav-links,
+.nav-links a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -29,6 +31,22 @@
   color: #8ed8c7;
 }
 
+.nav-links {
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-links a {
+  color: #f3fbfb;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.nav-links a.active-link {
+  background: rgba(255, 255, 255, 0.14);
+}
+
 .logout-btn {
   background: #f6b14d !important;
   color: #253336 !important;
@@ -38,10 +56,20 @@
 
 @media (max-width: 560px) {
   .navbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
     padding: 0 14px;
+    padding-bottom: 12px;
+    padding-top: 12px;
   }
 
   .logo {
     font-size: 16px;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+    width: 100%;
   }
 }

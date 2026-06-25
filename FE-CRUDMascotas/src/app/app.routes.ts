@@ -40,13 +40,14 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
 
 { path: '' , redirectTo:'login' , pathMatch: 'full' },
 { path: 'login', component: Login},
-{ path: 'cambiar-password', component: CambiarPassword, canActivate: [authGuard]},
+{ path: 'cambiar-password', component: CambiarPassword, canActivate: [authGuard, roleGuard], data: { roles: ['Administrador', 'Cliente'] }},
   
   //{ path: '', redirectTo:'listadoGeneral', pathMatch: 'full'   }, // Página inicial---modificar esto ahora 
 
   // 🧩 Tu nuevo listado combinado
   { path: 'listadoGeneral', component: ListadoGeneralComponent, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'clientes-inactivos', component: ClientesInactivos, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
+  { path: 'agregar-cliente-mascota', component: AgregarClienteMascota, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] }},
 
   // Agregar nuevo registro (persona + mascota)
   { path: 'agregar-veterinaria', component: AgregarEditarVeterinaria , canActivate: [authGuard, passwordChangeGuard, roleGuard],data: { roles: ['Administrador'] }},
@@ -64,6 +65,7 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
   { path: 'ver/:id', component: VerVeterinaria, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
 
 // Rutas de Mascota
+  { path: 'mascota', component: ListadoMascotaComponent, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'listadoMascota', component: ListadoMascotaComponent, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'mascota/agregar', component: AgregarEditarMascotaComponent, canActivate:[authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] }},
   { path: 'mascota/editar/:id', component: AgregarEditarMascotaComponent, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } }, // Usamos el mismo para editar y va incrementando el id de las mascotas que muestra
@@ -75,6 +77,7 @@ export const routes: Routes = [//ver minuto 1:00:00 explica como redireccionar l
   { path: 'historial-mascota/ver/:id', component: VerHistorial, canActivate: [authGuard, passwordChangeGuard] },
 
 //  Rutas de Persona
+  { path: 'persona' , component: ListadoPersonaComponent, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'listadoPersona' , component: ListadoPersonaComponent, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'agregarPersona' , component: AgregarEditarPersona, canActivate:[authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },
   { path: 'editarPersona/:id' , component: AgregarEditarPersona, canActivate: [authGuard, passwordChangeGuard, roleGuard], data: { roles: ['Administrador'] } },

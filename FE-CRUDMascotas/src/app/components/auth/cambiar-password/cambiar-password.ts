@@ -47,7 +47,8 @@ export class CambiarPassword {
       next: (res) => {
         this._snackBar.open(res, 'Cerrar', { duration: 3000 });
         localStorage.setItem('debeCambiarPassword', 'false');
-        this.router.navigate(['/mi-perfil']);
+        const ruta = this.authService.getRol() === 'Cliente' ? '/mi-perfil' : '/listadoGeneral';
+        this.router.navigate([ruta]);
       },
       error: (err) => {
         const mensaje = err.error || 'Error al cambiar la contrasena';

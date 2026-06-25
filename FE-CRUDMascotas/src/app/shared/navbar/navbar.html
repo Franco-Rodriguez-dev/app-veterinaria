@@ -4,8 +4,35 @@
     Veterinaria App
   </span>
 
-  <button mat-flat-button (click)="logout()" class="logout-btn">
-    <mat-icon fontIcon="logout"></mat-icon>
-    Cerrar sesion
-  </button>
+  <div class="nav-links">
+    <a *ngIf="isAdmin && !debeCambiarPassword" mat-button routerLink="/listadoGeneral" routerLinkActive="active-link">
+      <mat-icon fontIcon="dashboard"></mat-icon>
+      Listado general
+    </a>
+
+    <a *ngIf="isAdmin && !debeCambiarPassword" mat-button routerLink="/cliente/agregar-con-mascota" routerLinkActive="active-link">
+      <mat-icon fontIcon="person_add"></mat-icon>
+      Nuevo cliente
+    </a>
+
+    <a *ngIf="isAdmin && !debeCambiarPassword" mat-button routerLink="/clientes-inactivos" routerLinkActive="active-link">
+      <mat-icon fontIcon="person_off"></mat-icon>
+      Dados de baja
+    </a>
+
+    <a *ngIf="isCliente && !debeCambiarPassword" mat-button routerLink="/mi-perfil" routerLinkActive="active-link">
+      <mat-icon fontIcon="account_circle"></mat-icon>
+      Mi perfil
+    </a>
+
+    <a mat-button routerLink="/cambiar-password" routerLinkActive="active-link">
+      <mat-icon fontIcon="lock_reset"></mat-icon>
+      {{ passwordLinkText }}
+    </a>
+
+    <button mat-flat-button (click)="logout()" class="logout-btn">
+      <mat-icon fontIcon="logout"></mat-icon>
+      Cerrar sesion
+    </button>
+  </div>
 </nav>
