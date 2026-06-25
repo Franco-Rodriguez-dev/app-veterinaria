@@ -11,6 +11,7 @@ namespace BE_CRUDMascotas.Controllers
     
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize(Roles = "Administrador")]
     public class PersonaController : ControllerBase
     {
         private readonly IPersonaRepository _personaRepository;
@@ -42,7 +43,6 @@ namespace BE_CRUDMascotas.Controllers
         //  GET: api/persona/{id}
         // Devuelve una persona por su ID, con su lista de mascotas
         // ============================================================
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<PersonaDetalleDTO>> GetById(int id)
         {
