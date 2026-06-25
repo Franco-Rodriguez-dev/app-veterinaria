@@ -41,7 +41,7 @@ public class VeterinariaController : ControllerBase
     }
 
 
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     [HttpPut("actualizarConMascota/{id}")]
     public async Task<IActionResult> UpdateConMascota(int id, PersonaMascotaCreateDTO dto)
     {
@@ -72,7 +72,7 @@ public class VeterinariaController : ControllerBase
         return NoContent();
     }
 
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     [HttpGet("{id}")]
     public async Task<ActionResult<PersonaMascotaCreateDTO>> GetPorId(int id)
     {
