@@ -25,19 +25,20 @@ namespace BE_CRUDMascotas.models.Repository
                 var lista = await (from p in _context.Personas
                                    join m in _context.Mascota on p.Id equals m.PersonaId
                                    where p.Activo && m.Activo
-                                   select new { p, m }).ToListAsync();
-
-                return lista.Select(x => new PersonaMascotaListDTO
+                                   select new PersonaMascotaListDTO
                 {
-                    PersonaId = x.p.Id,
-                    Nombre = x.p.Nombre,
-                    Apellido = x.p.Apellido,
-                    Telefono = x.p.Telefono,
-                    MascotaId = x.m.ID,
-                    NombreMascota = x.m.Nombre,
-                    Raza = x.m.Raza,
-                    Peso = x.m.Peso
-                }).ToList();
+                    PersonaId = p.Id,
+                    UsuarioId = p.Usuario != null ? p.Usuario.Id : null,
+                    Nombre = p.Nombre,
+                    Apellido = p.Apellido,
+                    Telefono = p.Telefono,
+                    MascotaId = m.ID,
+                    NombreMascota = m.Nombre,
+                    Raza = m.Raza,
+                    Peso = m.Peso
+                }).ToListAsync();
+
+                return lista;
             }
             catch (Exception ex)
             {

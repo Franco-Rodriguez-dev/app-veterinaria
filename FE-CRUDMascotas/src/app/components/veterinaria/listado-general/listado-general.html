@@ -97,6 +97,13 @@
           fontIcon="edit"
         ></mat-icon>
         <mat-icon
+          class="action-icon action-password"
+          matTooltip="Restablecer contrasena"
+          *ngIf="rol === 'Administrador' && e.usuarioId"
+          (click)="restablecerPassword(e)"
+          fontIcon="key"
+        ></mat-icon>
+        <mat-icon
           class="action-icon action-delete"
           matTooltip="Eliminar"
           *ngIf="rol === 'Administrador'"

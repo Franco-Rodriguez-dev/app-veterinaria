@@ -37,6 +37,11 @@ export class Login {
 
     this.authService.saveSession(res);
 
+    if (res.debeCambiarPassword) {
+      this.router.navigate(['/cambiar-password']);
+      return;
+    }
+
     const rutaInicial = res.rol === 'Cliente' ? '/mi-perfil' : '/listadoGeneral';
     this.router.navigate([rutaInicial]);
       });

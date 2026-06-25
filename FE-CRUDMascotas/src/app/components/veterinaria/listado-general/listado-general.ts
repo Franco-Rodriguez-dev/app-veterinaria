@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MaterialModules } from '../../../shared/material';
 import { Spinner } from '../../../shared/spinner/spinner';
 import { CommonModule } from '@angular/common';
+import { UsuarioService } from '../../../service/usuario';
 //import { Spinner } from '../../../shared/spinner/spinner';
 
 
@@ -27,6 +28,7 @@ export class ListadoGeneralComponent implements OnInit {
   rol: string = '';
 
   private _veterinariaService = inject(VeterinariaService);
+  private usuarioService = inject(UsuarioService);
   private _snackBar = inject(MatSnackBar);
   private router = inject(Router);
  
@@ -84,6 +86,38 @@ export class ListadoGeneralComponent implements OnInit {
         }
       });
     }
+  }
+
+  restablecerPassword(e: Veterinaria) {
+    if (!e.usuarioId) {
+      this._snackBar.open('Este cliente no tiene usuario asociado', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    const passwordTemporal = prompt(`Nueva contrasena temporal para ${e.nombre} ${e.apellido}`);
+
+    if (!passwordTemporal) return;
+
+    if (passwordTemporal.length < 6) {
+      this._snackBar.open('La contrasena temporal debe tener al menos 6 caracteres', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    this.usuarioService.restablecerPassword({
+      usuarioId: e.usuarioId,
+      passwordTemporal
+    }).subscribe({
+      next: (mensaje) => {
+        this._snackBar.open(mensaje, 'Cerrar', { duration: 3000 });
+      },
+      error: (err) => {
+        const mensaje = typeof err.error === 'string'
+          ? err.error
+          : 'No se pudo restablecer la contrasena';
+
+        this._snackBar.open(mensaje, 'Cerrar', { duration: 3000 });
+      }
+    });
   }
 
   // 🟢 Agregar función para filtrar
