@@ -12,3 +12,7 @@ FE-CRUDMascotas/ng-serve*.log
 
 # otros
 .env
+BE-CRUDMascotas/BE-CRUDMascotas/appsettings.Local.json
+
+# Configuración local de Visual Studio
+*.csproj.user

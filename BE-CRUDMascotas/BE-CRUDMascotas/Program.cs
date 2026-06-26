@@ -16,6 +16,10 @@ using BCrypt.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .AddJsonFile("appsettings.Local.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 // Add services to the container.
 
 builder.Services.AddControllers()
@@ -65,6 +69,9 @@ builder.Services.AddSwaggerGen(c =>
 var key = builder.Configuration["Jwt:Key"];
 var issuer = builder.Configuration["Jwt:Issuer"];
 var audience = builder.Configuration["Jwt:Audience"];
+ValidateRequiredConfiguration(key ?? "", "Jwt:Key");
+ValidateRequiredConfiguration(issuer ?? "", "Jwt:Issuer");
+ValidateRequiredConfiguration(audience ?? "", "Jwt:Audience");
 
 builder.Services.AddAuthentication(options =>
 {
@@ -87,10 +94,14 @@ builder.Services.AddAuthentication(options =>
 });
 
 //cors
+var allowedOrigins = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>() ?? Array.Empty<string>();
+
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowWebapp",
         builder => builder
-            .AllowAnyOrigin()
+            .WithOrigins(allowedOrigins)
             .AllowAnyHeader()
             .AllowAnyMethod()
     )
@@ -103,7 +114,12 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddDbContext<AplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("conexion"));
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? builder.Configuration.GetConnectionString("conexion");
+
+    ValidateRequiredConfiguration(connectionString ?? "", "ConnectionStrings:DefaultConnection");
+
+    options.UseSqlServer(connectionString);
 });
 
 //AutoMapper
@@ -142,5 +158,15 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+static void ValidateRequiredConfiguration(string value, string key)
+{
+    if (string.IsNullOrWhiteSpace(value)
+        || value.Contains("CONFIGURAR_EN_VARIABLE_DE_ENTORNO")
+        || value.Contains("COMPLETAR_EN_APPSETTINGS_LOCAL"))
+    {
+        throw new InvalidOperationException($"Falta configurar {key}.");
+    }
+}
 
 public partial class Program { }
