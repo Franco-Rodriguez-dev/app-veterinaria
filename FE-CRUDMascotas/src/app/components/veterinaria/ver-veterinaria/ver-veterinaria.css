@@ -1,4 +1,29 @@
-.card{
-    margin-top: 5px;
-    text-align: center;
+.card {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.historial-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.historial-actions button,
+.page-actions button {
+  min-height: 42px;
+  font-weight: 600;
+}
+
+.historial-actions mat-icon,
+.page-actions mat-icon {
+  margin-right: 6px;
+}
+
+.page-actions {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 16px;
 }

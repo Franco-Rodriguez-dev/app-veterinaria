@@ -107,7 +107,7 @@ export class VerMascotaComponent implements OnInit {
   }
 
   volver(): void {
-    const ruta = this.rol === 'Cliente' ? '/mi-perfil' : '/listadoMascota';
+    const ruta = this.rol === 'Cliente' ? '/mi-perfil' : '/listadoGeneral';
     this.router.navigate([ruta]);
   }
 }

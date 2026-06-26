@@ -1,29 +1,34 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { VeterinariaService } from '../../../service/veterinaria';
-import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
-
-import { MaterialModules } from '../../../shared/material';
+import { ActivatedRoute, ParamMap, Router, RouterModule } from '@angular/router';
 import { VeterinariaDetalle } from '../../../interfaces/veterinaria-detalle';
-
+import { VeterinariaService } from '../../../service/veterinaria';
+import { MaterialModules } from '../../../shared/material';
 
 @Component({
   selector: 'app-ver-veterinaria',
-  standalone: true,  
-  imports: [RouterModule,MaterialModules],
+  standalone: true,
+  imports: [CommonModule, RouterModule, MaterialModules],
   templateUrl: './ver-veterinaria.html',
   styleUrls: ['./ver-veterinaria.css']
 })
 export class VerVeterinaria implements OnInit {
-  private _snackBar = inject (MatSnackBar);
+  private _snackBar = inject(MatSnackBar);
   private _veterinariaService = inject(VeterinariaService);
   private aRouter = inject(ActivatedRoute);
+  private router = inject(Router);
 
-   id: string | null = null;
-   veterinaria: VeterinariaDetalle | undefined;
+  id: string | null = null;
+  mascotaId: number | null = null;
+  veterinaria: VeterinariaDetalle | undefined;
 
-   ngOnInit(): void {
-    // Suscribirse al paramMap para recibir cambios en el id
+  ngOnInit(): void {
+    this.aRouter.queryParamMap.subscribe((params) => {
+      const mascotaId = params.get('mascotaId');
+      this.mascotaId = mascotaId ? Number(mascotaId) : null;
+    });
+
     this.aRouter.paramMap.subscribe((params: ParamMap) => {
       this.id = params.get('id');
 
@@ -33,27 +38,38 @@ export class VerVeterinaria implements OnInit {
     });
   }
 
-  CargarVeterinaria (id: string): void {
+  CargarVeterinaria(id: string): void {
     this._veterinariaService.getDetalle(id).subscribe({
       next: (data) => {
         this.veterinaria = data;
       },
-      error: (err) => {
+      error: () => {
         this._snackBar.open('Error al cargar mascota', 'Cerrar', {
           duration: 3000
         });
       }
     });
   }
- volver(): void {
-    // Navegar de vuelta al listado
-    // Por ejemplo, si usás Router:
-    // this.router.navigate(['/listadoMascota']);
+
+  verHistorialClinico(): void {
+    if (!this.mascotaId) {
+      this._snackBar.open('No se pudo identificar la mascota', 'Cerrar', { duration: 3000 });
+      return;
+    }
+
+    this.router.navigate(['/mascota/ver', this.mascotaId]);
   }
 
+  agregarHistorialClinico(): void {
+    if (!this.mascotaId) {
+      this._snackBar.open('No se pudo identificar la mascota', 'Cerrar', { duration: 3000 });
+      return;
+    }
 
+    this.router.navigate(['/historial-mascota/agregar', this.mascotaId]);
+  }
 
-
-
-
+  volver(): void {
+    this.router.navigate(['/listadoGeneral']);
+  }
 }

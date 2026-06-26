@@ -66,7 +66,9 @@ export class ListadoGeneralComponent implements OnInit {
 
   // 👇👇 Las funciones que querías completar
   ver(e: Veterinaria) {
-    this.router.navigate(['/ver', e.personaId]);
+    this.router.navigate(['/ver', e.personaId], {
+      queryParams: { mascotaId: e.mascotaId }
+    });
   }
 
   editar(e: Veterinaria) {
